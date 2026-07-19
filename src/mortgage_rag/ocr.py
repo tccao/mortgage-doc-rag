@@ -39,9 +39,15 @@ def _tessdata_path() -> str:
     env = os.environ.get("TESSDATA_PREFIX")
     if env:
         return env
-    repo_local = Path(__file__).resolve().parents[2] / "tools" / "tessdata"
-    if (repo_local / "eng.traineddata").exists():
-        return str(repo_local)
+    # __file__-relative works from a source checkout; cwd-relative covers a
+    # site-packages install run from the repo root (scripts, notebook, evals).
+    candidates = (
+        Path(__file__).resolve().parents[2] / "tools" / "tessdata",
+        Path.cwd() / "tools" / "tessdata",
+    )
+    for repo_local in candidates:
+        if (repo_local / "eng.traineddata").exists():
+            return str(repo_local)
     return ""  # fall back to tesserocr's default lookup
 
 
