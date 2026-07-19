@@ -321,6 +321,11 @@ def write_report(results: dict) -> None:
         f"commit: {hw.get('commit', '?')}",
         f"- Corpus: {cs['clean_pdfs']} clean + {cs['degraded_pdfs']} degraded PDFs, "
         f"{cs['bundles']} adversarial bundles, {cs['doc_types']} doc types",
+    ]
+    secs = results["meta"].get("layer_seconds") or {}
+    if secs:
+        lines.append("- Layer runtime: " + ", ".join(f"{k} {v}s" for k, v in secs.items()))
+    lines += [
         "",
         "| Layer | Metric | Value |",
         "|---|---|---|",
@@ -429,24 +434,33 @@ def main() -> int:
         }
     }
 
+    timings: dict[str, float] = {}
+    results["meta"]["layer_seconds"] = timings
+
     if "ocr" in layers:
         print("== OCR layer (degraded scans vs ground truth) ==")
+        t0 = time.time()
         results["ocr"] = eval_ocr_layer()
+        timings["ocr"] = round(time.time() - t0, 1)
         print(f"   mean CER {results['ocr']['mean_cer']} | mean WER {results['ocr']['mean_wer']} "
-              f"over {results['ocr']['files']} files")
+              f"over {results['ocr']['files']} files [{timings['ocr']}s]")
 
     if "classification" in layers:
         print("== Classification layer ==")
+        t0 = time.time()
         results["classification"] = eval_classification_layer(
             include_degraded=not args.classification_clean_only
         )
+        timings["classification"] = round(time.time() - t0, 1)
         for v in ("clean", "degraded"):
             c = results["classification"][v]
             if c["scored"]:
                 print(f"   {v}: {c['accuracy']:.1%} ({c['correct']}/{c['scored']})")
+        print(f"   [{timings['classification']}s]")
 
     if "retrieval" in layers or "answer" in layers:
         print("== Retrieval" + (" + answer" if "answer" in layers else "") + " layer ==")
+        t0 = time.time()
         cases = load_golden()
         backend = None
         if "answer" in layers and cfg.llm_backend == "mock":
@@ -456,12 +470,14 @@ def main() -> int:
         results["rag"] = eval_retrieval_and_answer(
             cases, cfg, run_answers="answer" in layers, backend=backend
         )
+        timings["rag"] = round(time.time() - t0, 1)
         r = results["rag"]["retrieval"]
         print(f"   retrieval: hit@k {r['hit_at_k']:.1%} | MRR {r['mrr']}")
         a = results["rag"].get("answer")
         if a:
             print(f"   answer: pass {a['pass_rate']:.1%} | "
                   f"adversarial resistance {a['adversarial_resistance']}")
+        print(f"   [{timings['rag']}s]")
 
     write_report(results)
 

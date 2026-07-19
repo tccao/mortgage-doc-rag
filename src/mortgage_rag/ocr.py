@@ -14,6 +14,7 @@ import shutil
 import subprocess
 import tempfile
 from pathlib import Path
+from typing import Any
 
 import cv2
 import fitz
@@ -33,6 +34,16 @@ except Exception:
 
 MIN_DIGITAL_CHARS = 50
 MIN_OCR_CHARS = 50
+
+# In-process memo of extraction results. Corpus evals hit the same file from
+# several layers and OCR dominates their runtime; keyed on mtime so an edited
+# file re-extracts, and on dpi because render resolution changes OCR output.
+_EXTRACT_CACHE: dict[tuple[str, float, int, str], Any] = {}
+
+
+def _extract_cache_key(pdf_path: str, dpi: int, kind: str) -> tuple[str, float, int, str]:
+    p = os.path.abspath(pdf_path)
+    return (p, os.path.getmtime(p), dpi, kind)
 
 
 def _tessdata_path() -> str:
@@ -141,12 +152,17 @@ def extract_text_pipeline(pdf_path: str, dpi: int = 300, progress=None) -> tuple
     Digital PDFs use the PyMuPDF text layer; scanned PDFs are rendered and OCR'd
     page by page.
     """
+    key = _extract_cache_key(pdf_path, dpi, "full")
+    if key in _EXTRACT_CACHE:
+        return _EXTRACT_CACHE[key]
+
     if is_digital_pdf(pdf_path):
         full_text = ""
         with fitz.open(pdf_path) as doc:
             for page in doc:
                 full_text += page.get_text() + "\n"
-        return full_text, "PyMuPDF"
+        _EXTRACT_CACHE[key] = (full_text, "PyMuPDF")
+        return _EXTRACT_CACHE[key]
 
     images = render_pdf_pages(pdf_path, dpi=dpi)
     full_text = ""
@@ -159,11 +175,16 @@ def extract_text_pipeline(pdf_path: str, dpi: int = 300, progress=None) -> tuple
             if progress:
                 progress((i + 1) / len(images), desc=f"OCR page {i + 1} ({engine})")
 
-    return full_text, "Hybrid-OCR"
+    _EXTRACT_CACHE[key] = (full_text, "Hybrid-OCR")
+    return _EXTRACT_CACHE[key]
 
 
 def extract_page_texts(pdf_path: str, dpi: int = 300) -> list[str]:
     """Per-page text extraction with per-page OCR fallback for mixed PDFs."""
+    key = _extract_cache_key(pdf_path, dpi, "pages")
+    if key in _EXTRACT_CACHE:
+        return list(_EXTRACT_CACHE[key])
+
     texts = []
     with fitz.open(pdf_path) as doc:
         for i, page in enumerate(doc):
@@ -176,4 +197,5 @@ def extract_page_texts(pdf_path: str, dpi: int = 300) -> list[str]:
                 except Exception:
                     text = ""
             texts.append(text)
+    _EXTRACT_CACHE[key] = texts
     return texts
