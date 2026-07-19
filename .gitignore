@@ -1,0 +1,24 @@
+# Private interview/defense notes — never publish
+private/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Model weights and caches
+*.gguf
+.cache/
+models/
+
+# OCR temp output
+temp_ocr_pages/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
