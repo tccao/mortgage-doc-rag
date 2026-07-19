@@ -1,0 +1,61 @@
+{
+  "bundle": "loan_file_03_income_conflict.pdf",
+  "description": "Loan file where a stated-income affidavit conflicts with the pay stub, plus an irrelevant policy circular.",
+  "num_pages": 9,
+  "pages": [
+    {
+      "page": 1,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 2,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 3,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 4,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 5,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 6,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 7,
+      "source": "pay_slip/paystub_lindqvist.pdf",
+      "role": "authoritative",
+      "label": "Pay slip"
+    },
+    {
+      "page": 8,
+      "source": "generated",
+      "role": "distractor",
+      "label": "Stated-income affidavit conflicting with pay slip"
+    },
+    {
+      "page": 9,
+      "source": "circular/va_circular_26_21_09.pdf",
+      "role": "irrelevant",
+      "label": "VA policy circular"
+    }
+  ]
+}

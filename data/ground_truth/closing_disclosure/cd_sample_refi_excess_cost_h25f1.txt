@@ -1,0 +1,58 @@
+ 
+ 
+ 
+  
+ 
+ 
+ 
+FEBRUARY 7, 2014 
+H-25(F) Mortgage Loan Transaction Closing Disclosure – Refinance 
+Transaction Sample (Amount in Excess of 12 CFR § 1026.19(e)(3)) 
+TILA RESPA Integrated 
+Disclosure  
+This is a sample of the completed disclosures required by 12 CFR § 1026.38(e) and (h) for a completed Closing Disclosure 
+for the refinance transaction illustrated by form H-24(D).  The Closing Costs have increased in excess of the good faith 
+requirements of 12 CFR § 1026.19(e)(3) by $200, for which the creditor has provided a refund under 12 CFR 
+§ 1026.19(f)(2)(v). 
+Calculating Cash to Close	
+Loan Estimate
+Final
+Did this change?
+Loan Amount
+$150,000.00
+$150,000.00
+NO
+Total Closing Costs (J)
+– $5,099.00
+– $5,977.57
+YES	
+• See Total Loan Costs (D) and Total Other Costs (I) 
+	
+• Increase exceeds legal limits by $200. See Lender Credits on page 2 
+for credit of excess amount.
+Closing Costs Paid Before Closing
+$0
+$655.00
+YES	
+• You paid these Closing Costs before closing
+Total Payoffs and Payments (K)
+– $120,000.00
+– $115,000.00
+YES	
+• See Payoffs and Payments (K)
+Cash to Close                                                
+$24,901.00
+ From   x To 
+Borrower
+$29,677.43
+ From   x To 
+Borrower
+Closing Costs Financed (Paid from your Loan Amount) $5,322.57
+Use this table to see what has changed from your Loan Estimate.
+J. TOTAL CLOSING COSTS (Borrower-Paid)
+$5,977.57
+Closing Costs Subtotals (D + I)
+$5,822.57
+$655.00
+Lender Credits (Includes $200 credit for increase in Closing Costs above legal limit)
+– $500.00

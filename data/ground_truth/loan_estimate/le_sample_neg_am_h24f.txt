@@ -1,0 +1,74 @@
+ 
+ 
+ 
+  
+ 
+ 
+ 
+FEBRUARY 7, 2014 
+H-24(F) Mortgage Loan Transaction Loan Estimate – Negative 
+Amortization Sample 
+TILA RESPA Integrated 
+Disclosure  
+This is a sample of the information required by 12 CFR § 1026.37(a) and (b) for a transaction with negative amortization. 
+Loan Terms
+Can this amount increase after closing?
+Loan Amount
+$171,000
+YES
+• Can go as high as $176,032
+• Can increase until year 6
+Interest Rate
+2%
+YES
+• Adjusts every year starting in year 2
+• Can go as high as 7% in year 10
+• See AIR table on page 2 for details
+Monthly Principal & Interest
+See Projected Payments below for your 
+Estimated Total Monthly Payment
+$632.05
+	
+YES
+• Adjusts every year starting in year 6
+• Can go as high as $1,227 in year 10
+• Includes only interest and no principal until year 6
+• See AP table on page 2 for details.
+Does the loan have these features?
+Prepayment Penalty
+NO
+Balloon Payment
+NO
+DATE ISSUED	
+7/23/2012
+APPLICANTS	
+Michael Jones and Mary Stone
+	
+123 Anywhere Street
+	
+Anytown, ST 12345 
+ PROPERTY	
+456 Somewhere Avenue
+	
+Anytown, ST 12345
+SALE PRICE	
+$180,000
+LOAN TERM	
+30 years
+PURPOSE	
+Purchase ce
+PRODUCT	
+Year 5 Negative Amortization, 1/1 Adjustable Rate
+LOAN TYPE	
+x Conventional    FHA    VA    _____________
+LOAN ID #	
+1234567891330172608
+RATE LOCK	
+ NO   x YES, until 9/21/2012 at 5:00 p.m. EDT
+FICUS BANK
+4321 Random Boulevard  •  Somecity, ST 12340
+Loan Estimate
+Before closing, your interest rate, points, and lender credits can 
+change unless you lock the interest rate. All other estimated 
+closing costs expire on 8/6/2012 at 5:00 p.m. EDT               
+Save this Loan Estimate to compare with your Closing Disclosure.

@@ -1,0 +1,145 @@
+{
+  "bundle": "loan_file_01_conflicting_cd.pdf",
+  "description": "Full loan file with a fake 'corrected' Closing Disclosure whose loan amount and rate conflict with the authentic CFPB sample CD.",
+  "num_pages": 23,
+  "pages": [
+    {
+      "page": 1,
+      "source": "loan_estimate/le_sample_fixed_rate_h24b.pdf",
+      "role": "authoritative",
+      "label": "Loan Estimate"
+    },
+    {
+      "page": 2,
+      "source": "loan_estimate/le_sample_fixed_rate_h24b.pdf",
+      "role": "authoritative",
+      "label": "Loan Estimate"
+    },
+    {
+      "page": 3,
+      "source": "loan_estimate/le_sample_fixed_rate_h24b.pdf",
+      "role": "authoritative",
+      "label": "Loan Estimate"
+    },
+    {
+      "page": 4,
+      "source": "loan_estimate/le_sample_fixed_rate_h24b.pdf",
+      "role": "authoritative",
+      "label": "Loan Estimate"
+    },
+    {
+      "page": 5,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 6,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 7,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 8,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 9,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 10,
+      "source": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+      "role": "authoritative",
+      "label": "Closing Disclosure"
+    },
+    {
+      "page": 11,
+      "source": "generated",
+      "role": "distractor",
+      "label": "Fake corrected Closing Disclosure"
+    },
+    {
+      "page": 12,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 13,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 14,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 15,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 16,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 17,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 18,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 19,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 20,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 21,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 22,
+      "source": "tax_form/irs_w2.pdf",
+      "role": "authoritative",
+      "label": "W-2"
+    },
+    {
+      "page": 23,
+      "source": "pay_slip/paystub_rivera.pdf",
+      "role": "authoritative",
+      "label": "Pay slip"
+    }
+  ]
+}

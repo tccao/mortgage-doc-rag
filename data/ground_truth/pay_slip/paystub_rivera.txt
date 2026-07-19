@@ -1,0 +1,26 @@
+Cedar Ridge Logistics LLC
+EARNINGS STATEMENT / PAY SLIP
+Employee Name
+Maria T. Rivera
+Employee ID
+EMP-4417
+Pay Period
+06/01/2026 - 06/15/2026
+Pay Date
+06/20/2026
+Gross Pay
+$4,250.00
+Federal Tax Withholding
+$510.00
+State Tax Withholding
+$170.00
+Social Security
+$263.50
+Medicare
+$61.63
+Total Deductions
+Net Pay
+$3,244.87
+YTD Gross Earnings
+$46,750.00
+Synthetic document generated for the mortgage-doc-rag test corpus. Not a real record.

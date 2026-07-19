@@ -1,0 +1,274 @@
+ 
+ 
+ 
+  
+ 
+ 
+ 
+FEBRUARY 7, 2014 
+H-24(D) Mortgage Loan Transaction Loan Estimate – Refinance Sample 
+TILA RESPA Integrated 
+Disclosure  
+This is a sample of a completed Loan Estimate for a transaction that is a refinance of an existing mortgage loan that 
+secures the property, for which the consumer is estimated to receive funds from the transaction.  The estimated property 
+value is $180,000, the loan amount is $150,000, the estimated outstanding balance of the existing mortgage loan is 
+$120,000, and the interest rate is 4.25 percent.  The consumer has elected to lock the interest rate.  The creditor requires 
+an escrow account and that the consumer pay for private mortgage insurance. 
+Loan Terms
+Can this amount increase after closing?
+Loan Amount
+$150,000
+NO
+Interest Rate
+4.25%
+NO
+Monthly Principal & Interest
+See Projected Payments below for your 
+Estimated Total Monthly Payment
+$737.91
+	
+NO
+Does the loan have these features?
+Prepayment Penalty
+NO
+Balloon Payment
+NO
+DATE ISSUED	
+2/15/2013
+APPLICANTS	
+Michael Jones and Mary Stone
+	
+123 Anywhere Street
+	
+Anytown, ST 12345 
+ PROPERTY	
+123 Anywhere Street
+	
+Anytown, ST 12345
+EST. PROP. VALUE	 $180,000
+LOAN TERM	
+30 years
+PURPOSE	
+Refinance ce
+PRODUCT	
+Fixed Rate
+LOAN TYPE	
+x Conventional    FHA    VA    _____________
+LOAN ID #	
+1234567891330172608
+RATE LOCK	
+ NO    x YES, until  4/16/2013 at 5:00 p.m. EDT
+FICUS BANK
+4321 Random Boulevard  •  Somecity, ST 12340
+Loan Estimate
+Projected Payments
+Payment Calculation
+Years 1-4
+Years 5-30
+Principal & Interest
+Mortgage Insurance
+Estimated Escrow
+Amount can increase over time
+	
+	
+$737.91
+	
++	
+82
+	
++	
+206
+	
+	
+$737.91
+	
++	
+—
+	
++	
+206
+Estimated Total  
+Monthly Payment
+$1,026
+$944
+Estimated Taxes, Insurance  
+& Assessments
+Amount can increase over time
+$206
+a month
+Before closing, your interest rate, points, and lender credits can 
+change unless you lock the interest rate. All other estimated 
+closing costs expire on 3/4/2013 at 5:00 p.m. EDT
+Save this Loan Estimate to compare with your Closing Disclosure.
+PAGE 1 OF 3  •  LOAN ID # 123456789
+LOAN ESTIMATE
+Visit www.consumerfinance.gov/mortgage-estimate for general information and tools.
+See Section G on page 2 for escrowed property costs. You must pay for other 
+property costs separately.
+This estimate includes
+In escrow?
+x Property Taxes
+YES
+x Homeowner’s Insurance
+YES
+ Other: 
+Estimated Closing Costs
+$5,099	
+Includes $3,521 in Loan Costs + $2,078 in Other Costs – $500  
+in Lender Credits. See page 2 for details.
+Estimated Cash to Close
+$24,901	
+Includes Closing Costs. See Calculating Cash to Close on page 2 for details.
+ Costs at Closing
+ From    x To    Borrower
+Loan Costs
+Other Costs
+A.  Origination Charges	
+$1,950
+.5 % of Loan Amount (Points)	
+$750
+Application Fee	
+$250 
+Origination Fee	
+$450
+Underwriting Fee	
+$500
+B.  Services You Cannot Shop For	
+$635
+Appraisal Fee	
+$425
+Credit Report Fee	
+$30
+Flood Determination Fee	
+$25
+Flood Monitoring Fee	
+$45
+Tax Monitoring Fee	
+$65
+Tax Status Research Fee	
+$45
+C.  Services You Can Shop For	
+$936
+Pest Inspection Fee	
+$85
+Title – Insurance Binder	
+$50
+Title – Lender’s Title Policy	
+$251
+Title – Settlement Agent Fee	
+$350
+Title – Title Search	
+$200
+D.  TOTAL LOAN COSTS (A + B + C)	
+$3,521
+E.  Taxes and Other Government Fees	
+$80
+Recording Fees and Other Taxes	
+$80
+Transfer Taxes	
+F.  Prepaids	
+$1,585	
+Homeowner’s Insurance Premium (  6   months)	
+$605
+Mortgage Insurance Premium (  1   months)	
+$82
+Prepaid Interest  ( $17.71  per day for 15 days @ 4.25%)	
+$266
+Property Taxes  (  6   months)	
+$632
+G.  Initial Escrow Payment at Closing	
+$413
+Homeowner’s Insurance	 $100.83	per month for  23mo.  	
+$202
+Mortgage Insurance	
+	
+per month for  23mo.	
+Property Taxes	
+$105.30	per month for  2  mo.	
+$211
+H.  Other	
+$0
+I.  TOTAL OTHER COSTS (E + F + G + H)	
+$2,078
+J.  TOTAL CLOSING COSTS	
+$5,099
+D + I	
+$5,599
+Lender Credits	
+– $500
+Loan Amount	
+$150,000
+Total Closing Costs (J)	
+– $5,099
+Estimated Total Payoffs and Payments	
+– $120,000 
+Estimated Cash to Close  
+ From  x To  Borrower	
+$24,901
+Estimated Closing Costs Financed  
+(Paid from your Loan Amount)	
+$5,099
+Calculating Cash to Close	
+PAGE 2 OF 3  •  LOAN ID # 123456789
+LOAN ESTIMATE
+Closing Cost Details
+Comparisons
+Use these measures to compare this loan with other loans.
+In 5 Years
+$51,932	 Total you will have paid in principal, interest, mortgage insurance, and loan costs.
+$13,788	 Principal you will have paid off.
+Annual Percentage Rate (APR)
+4.537%	 Your costs over the loan term expressed as a rate. This is not your interest rate. 
+Total Interest Percentage (TIP)
+77.28%	 The total amount of interest that you will pay over the loan term as a  
+percentage of your loan amount.
+We may order an appraisal to determine the property’s value and charge you for this  
+appraisal. We will promptly give you a copy of any appraisal, even if your loan does not close. 
+You can pay for an additional appraisal for your own use at your own cost.
+If you sell or transfer this property to another person, we 
+    will allow, under certain conditions, this person to assume this loan on the original terms. 
+ x  will not allow assumption of this loan on the original terms.
+This loan requires homeowner’s insurance on the property, which you may obtain from a 
+company of your choice that we find acceptable.
+If your payment is more than 15 days late, we will charge a late fee of 5% of the monthly 
+principal and interest payment.
+You do not have to accept this loan because you have received this form or signed a  
+loan application.
+Taking this loan could end any state law protection you may currently have against liability for 
+unpaid debt if your lender forecloses on your home. If you lose this protection, you may have to pay 
+any debt remaining even after foreclosure. You may want to consult a lawyer for more information.
+Refinancing this loan will depend on your future financial situation, the property value, and 
+market conditions. You may not be able to refinance this loan.
+We intend 
+    to service your loan. If so, you will make your payments to us.
+x  to transfer servicing of your loan.
+Appraisal 
+Assumption
+Homeowner’s 
+Insurance
+Late Payment
+Loan Acceptance
+Liability after
+Foreclosure 
+Refinance
+Servicing
+Other Considerations
+Additional Information About This Loan
+PAGE 3 OF 3  •  LOAN ID # 123456789
+LOAN ESTIMATE
+LENDER 	
+Ficus Bank  
+NMLS/__ LICENSE ID	
+LOAN OFFICER	
+Joe Smith 
+NMLS/__ LICENSE ID	 12345
+EMAIL	
+joesmith@ficusbank.com
+PHONE   	
+123-456-7890
+MORTGAGE BROKER	
+NMLS/__ LICENSE ID	
+LOAN OFFICER	
+NMLS/__ LICENSE ID	
+EMAIL	
+PHONE  	

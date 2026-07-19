@@ -1,0 +1,336 @@
+ 
+ 
+ 
+  
+ 
+ 
+ 
+FEBRUARY 7, 2014 
+H-24(C) Mortgage Loan Transaction Loan Estimate – Interest Only 
+Adjustable Rate Loan Sample 
+TILA RESPA Integrated 
+Disclosure  
+This is a sample of a completed Loan Estimate for an adjustable rate loan with interest only payments.  This loan is for the 
+purchase of property at a sale price of $240,000 and has a loan amount of $211,000 and a 30-year loan term.  For the first 
+five years of the loan term, the scheduled payments cover only interest and the loan has an introductory interest rate that is 
+fixed at 4.00 percent.  After five years, the payments include principal and the interst rate adjusts every three years based 
+on the value of the Monthly Treasury Average index plus a margin of 4.00 percent.  The consumer has elected to lock the 
+interest rate.  The creditor does not require an escrow account with the loan.  The creditor requires that the consumer pay 
+for private mortgage insurance. 
+Loan Terms
+Can this amount increase after closing?
+Loan Amount
+$211,000
+NO
+Interest Rate
+4%
+YES
+• Adjusts every 3 years starting in year 6
+• Can go as high as 12% in year 15
+• See AIR Table on page 2 for details
+Monthly Principal & Interest
+See Projected Payments below for your 
+Estimated Total Monthly Payment
+$703.33
+	
+YES
+• Adjusts every 3 years starting in year 6
+• Can go as high as $2,068 in year 15
+• Includes only interest and no principal until year 6
+• See AP Table on page 2 for details
+Does the loan have these features?
+Prepayment Penalty
+NO
+Balloon Payment
+NO
+DATE ISSUED	
+2/15/2013
+APPLICANTS	
+Michael Jones and Mary Stone
+	
+123 Anywhere Street
+	
+Anytown, ST 12345 
+ PROPERTY	
+456 Somewhere Avenue
+	
+Anytown, ST 12345
+SALE PRICE	
+$240,000
+LOAN TERM	
+30 years
+PURPOSE	
+Purchase ce
+PRODUCT	
+5 Year Interest Only, 5/3 Adjustable Rate
+LOAN TYPE	
+x Conventional    FHA    VA    _____________
+LOAN ID #	
+1234567891330172608
+RATE LOCK	
+ NO   x YES, until 4/16/2013 at 5:00 p.m. EDT
+FICUS BANK
+4321 Random Boulevard  •  Somecity, ST 12340
+Loan Estimate
+Projected Payments
+Payment Calculation
+Years 1-5
+Years 6-8
+Years 9-11
+Years 12-30
+Principal & Interest
+Mortgage Insurance
+Estimated Escrow
+Amount can increase over time
+	
+$703.33
+	 only interest
++	
+109
++	
+0
+	
+$1,028  min
+	
+$1,359  max
++	
+109
++	
+0
+	
+$1,028  min
+	
+$1,604  max
++	
+109
++	
+0
+	
+$1,028  min
+	
+$2,068  max
++	
+—
++	
+0
+Estimated Total  
+Monthly Payment
+$812
+$1,137–$1,468
+$1,137–$1,713
+$1,028–$2,068
+Estimated Taxes, Insurance  
+& Assessments
+Amount can increase over time
+$533 
+a month
+Before closing, your interest rate, points, and lender credits can 
+change unless you lock the interest rate. All other estimated 
+closing costs expire on 3/4/2013 at 5:00 p.m. EDT               
+Save this Loan Estimate to compare with your Closing Disclosure.
+PAGE 1 OF 3  •  LOAN ID # 123456789
+LOAN ESTIMATE
+Visit www.consumerfinance.gov/mortgage-estimate for general information and tools.
+See Section G on page 2 for escrowed property costs. You must pay for other 
+property costs separately.
+This estimate includes
+In escrow?
+x Property Taxes
+NO
+x Homeowner’s Insurance
+NO
+ Other: 
+Costs at Closing
+Estimated Closing Costs
+$8,791	
+Includes $5,851 in Loan Costs + $2,940 in Other Costs – $0  
+in Lender Credits. See page 2 for details.
+Estimated Cash to Close
+$27,791	
+Includes Closing Costs. See Calculating Cash to Close on page 2 for details.
+Loan Costs
+Other Costs
+A.  Origination Charges	
+$3,110
+1 % of Loan Amount (Points)	
+$2,110
+Application Fee	
+$500 
+Processing Fee 	
+$500
+B.  Services You Cannot Shop For	
+$820
+Appraisal Fee	
+$305
+Credit Report Fee	
+$30
+Flood Determination Fee	
+$35
+Lender’s Attorney Fee	
+$400
+Tax Status Research Fee	
+$50
+	
+C.  Services You Can Shop For	
+$1,921
+Pest Inspection Fee	
+$125
+Survey Fee	
+$150
+Title – Courier Fee	
+$32
+Title – Lender’s Title Policy	
+$665
+Title – Settlement Agent Fee	
+$325
+Title – Title Search	
+$624
+D.  TOTAL LOAN COSTS (A + B + C)	
+$5,851
+E.  Taxes and Other Government Fees	
+$152
+Recording Fees and Other Taxes	
+$152
+Transfer Taxes	
+F.  Prepaids	
+$1,352	
+Homeowner’s Insurance Premium (   12   months)	
+$1,000
+Mortgage Insurance Premium (       months)	
+Prepaid Interest  ( $23.44  per day for 15 days @ 4.00%)	
+$352
+Property Taxes  (       months)	
+G.  Initial Escrow Payment at Closing	
+Homeowner’s Insurance	
+	
+per month for    3mo.  	
+Mortgage Insurance	
+	
+per month for  0  mo.	
+Property Taxes	
+	
+per month for      mo.	
+H.  Other	
+$1,436
+Title – Owner’s Title Policy (optional)	
+$1,436
+I.  TOTAL OTHER COSTS (E + F + G + H)	
+$2,940
+J.  TOTAL CLOSING COSTS	
+$8,791
+D + I	
+$8,791
+Lender Credits	
+Total Closing Costs (J)	
+$8,791
+Closing Costs Financed (Paid from your Loan Amount)	
+$0 
+Down Payment/Funds from Borrower	
+$29,000 
+Deposit	
+ – $10,000
+Funds for Borrower	
+$0
+Seller Credits	
+$0 
+Adjustments and Other Credits	
+$0 
+Estimated Cash to Close	
+$27,791
+Calculating Cash to Close	
+PAGE 2 OF 3  •  LOAN ID # 123456789
+LOAN ESTIMATE
+Closing Cost Details
+ Adjustable Payment (AP) Table
+Interest Only Payments?
+YES   for your first 60 payments
+Optional Payments?
+NO
+Step Payments?
+NO   
+Seasonal Payments?
+NO
+Monthly Principal and Interest Payments
+   First Change/Amount	
+$1,028 – $1,359 at 61st payment
+   Subsequent Changes	
+Every three years
+   Maximum Payment	
+$2,068 starting at 169th payment
+ Adjustable Interest Rate (AIR) Table
+Index + Margin	
+MTA + 4%
+Initial Interest Rate	
+4%
+Minimum/Maximum Interest Rate	
+3.25%/12%
+Change Frequency
+   First Change	
+Beginning of 61st month
+   Subsequent Changes	
+Every 36th month after first change
+Limits on Interest Rate Changes
+   First Change	
+2%
+   Subsequent Changes	
+2%
+LENDER 	
+Ficus Bank  
+NMLS/__ LICENSE ID	
+LOAN OFFICER	
+Joe Smith 
+NMLS/__ LICENSE ID	 12345
+EMAIL	
+joesmith@ficusbank.com
+PHONE   	
+123-456-7890
+Comparisons
+Use these measures to compare this loan with other loans.
+In 5 Years
+$54,944	 Total you will have paid in principal, interest, mortgage insurance, and loan costs.
+$0	
+Principal you will have paid off.
+Annual Percentage Rate (APR)
+4.617%	 Your costs over the loan term expressed as a rate. This is not your interest rate. 
+Total Interest Percentage (TIP)
+81.18%	 The total amount of interest that you will pay over the loan term as a  
+percentage of your loan amount.
+We may order an appraisal to determine the property’s value and charge you for this 
+appraisal. We will promptly give you a copy of any appraisal, even if your loan does not close. 
+You can pay for an additional appraisal for your own use at your own cost.
+If you sell or transfer this property to another person, we 
+    will allow, under certain conditions,  this person to assume this loan on the original terms. 
+x  will not allow assumption of this loan on the original terms.
+This loan requires homeowner’s insurance on the property, which you may obtain from a 
+company of your choice that we find acceptable.
+If your payment is more than 15 days late, we will charge a late fee of 5% of the monthly 
+principal and interest payment.
+Refinancing this loan will depend on your future financial situation, the property value, and 
+market conditions. You may not be able to refinance this loan.
+We intend 
+    to service your loan. If so, you will make your payments to us.
+x  to transfer servicing of your loan.
+Appraisal 
+Assumption
+Homeowner’s 
+Insurance
+Late Payment
+Refinance
+Servicing
+Other Considerations
+Additional Information About This Loan
+MORTGAGE BROKER	
+NMLS/__ LICENSE ID	
+LOAN OFFICER	
+NMLS/__ LICENSE ID	
+EMAIL	
+PHONE  	
+PAGE 3 OF 3  •  LOAN ID #123456789
+LOAN ESTIMATE
+Confirm Receipt
+By signing, you are only confirming that you have received this form. You do not have to accept this loan because you have signed or 
+received this form.
+Applicant Signature	
+Date
+Co-Applicant Signature	
+Date

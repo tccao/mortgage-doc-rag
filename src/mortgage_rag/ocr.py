@@ -1,7 +1,10 @@
 """Dual-engine OCR: ChandraOCR CLI when installed, Tesseract fallback.
 
-Digital PDFs skip OCR entirely (PyMuPDF text layer). Scanned pages go through
-CLAHE/denoise/threshold preprocessing before Tesseract.
+Fully self-contained: pages are rasterized with PyMuPDF (no poppler) and OCR'd
+with tesserocr's bundled libtesseract (no system tesseract). English traineddata
+lives in tools/tessdata (tessdata_fast, committed) or wherever TESSDATA_PREFIX
+points. Digital PDFs skip OCR entirely via the PyMuPDF text layer. Scanned pages
+go through CLAHE/denoise/threshold preprocessing before Tesseract.
 """
 
 from __future__ import annotations
@@ -10,18 +13,42 @@ import os
 import shutil
 import subprocess
 import tempfile
+from pathlib import Path
 
 import cv2
 import fitz
 import numpy as np
-import pytesseract
-from pdf2image import convert_from_path
+import tesserocr
 from PIL import Image
 
 CHANDRA_AVAILABLE = shutil.which("chandra") is not None
 
 MIN_DIGITAL_CHARS = 50
 MIN_OCR_CHARS = 50
+
+
+def _tessdata_path() -> str:
+    env = os.environ.get("TESSDATA_PREFIX")
+    if env:
+        return env
+    repo_local = Path(__file__).resolve().parents[2] / "tools" / "tessdata"
+    if (repo_local / "eng.traineddata").exists():
+        return str(repo_local)
+    return ""  # fall back to tesserocr's default lookup
+
+
+def render_pdf_pages(
+    pdf_path: str, dpi: int = 300, first_page: int | None = None, last_page: int | None = None
+) -> list[Image.Image]:
+    """Rasterize PDF pages to PIL images with PyMuPDF (poppler-free)."""
+    images = []
+    with fitz.open(pdf_path) as doc:
+        start = (first_page - 1) if first_page else 0
+        end = last_page if last_page else len(doc)
+        for i in range(start, min(end, len(doc))):
+            pix = doc[i].get_pixmap(dpi=dpi)
+            images.append(Image.frombytes("RGB", (pix.width, pix.height), pix.samples))
+    return images
 
 
 def preprocess_for_ocr(image: Image.Image | np.ndarray) -> np.ndarray:
@@ -43,8 +70,24 @@ def preprocess_for_ocr(image: Image.Image | np.ndarray) -> np.ndarray:
 
 
 def run_tesseract_ocr(image: Image.Image | np.ndarray) -> str:
-    processed = preprocess_for_ocr(image)
-    return pytesseract.image_to_string(processed, config=r"--oem 3 --psm 6")
+    """OCR with Tesseract's own binarization first; CLAHE preprocessing only as
+    a fallback. On JPEG-compressed scans, adaptive thresholding amplifies noise
+    and wrecks recognition, while Tesseract 5's internal Otsu handles them well.
+    """
+    kwargs = {}
+    tessdata = _tessdata_path()
+    if tessdata:
+        kwargs["path"] = tessdata
+
+    if isinstance(image, np.ndarray):
+        image = Image.fromarray(image)
+    raw = tesserocr.image_to_text(image, psm=tesserocr.PSM.AUTO, **kwargs)
+    if len(raw.strip()) >= MIN_OCR_CHARS:
+        return raw
+
+    processed = Image.fromarray(preprocess_for_ocr(image))
+    fallback = tesserocr.image_to_text(processed, psm=tesserocr.PSM.SINGLE_BLOCK, **kwargs)
+    return fallback if len(fallback.strip()) > len(raw.strip()) else raw
 
 
 def run_chandra_ocr(image_path: str) -> str:
@@ -91,7 +134,7 @@ def extract_text_pipeline(pdf_path: str, dpi: int = 300, progress=None) -> tuple
                 full_text += page.get_text() + "\n"
         return full_text, "PyMuPDF"
 
-    images = convert_from_path(pdf_path, dpi=dpi)
+    images = render_pdf_pages(pdf_path, dpi=dpi)
     full_text = ""
     with tempfile.TemporaryDirectory(prefix="mrag_ocr_") as temp_dir:
         for i, img in enumerate(images):
@@ -113,9 +156,7 @@ def extract_page_texts(pdf_path: str, dpi: int = 300) -> list[str]:
             text = page.get_text()
             if not text.strip():
                 try:
-                    images = convert_from_path(
-                        pdf_path, first_page=i + 1, last_page=i + 1, dpi=dpi
-                    )
+                    images = render_pdf_pages(pdf_path, dpi=dpi, first_page=i + 1, last_page=i + 1)
                     if images:
                         text = run_tesseract_ocr(images[0])
                 except Exception:
