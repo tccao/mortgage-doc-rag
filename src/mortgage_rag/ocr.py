@@ -23,6 +23,14 @@ from PIL import Image
 
 CHANDRA_AVAILABLE = shutil.which("chandra") is not None
 
+# Silence leptonica's per-region stderr chatter ("pixClipBoxToForeground: box not
+# within image") — emitted during layout analysis on near-blank regions; harmless
+# but floods eval logs at corpus scale.
+try:
+    tesserocr.set_leptonica_log_level(tesserocr.LeptLogLevel.NONE)
+except Exception:
+    pass
+
 MIN_DIGITAL_CHARS = 50
 MIN_OCR_CHARS = 50
 
