@@ -1,0 +1,43 @@
+name: eval
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test-and-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Install
+        run: uv sync
+
+      - name: Unit tests
+        run: uv run pytest -q
+
+      - name: Lint
+        run: uv run ruff check src tests scripts evals
+
+      - name: Retrieval regression eval (no LLM, CPU)
+        run: |
+          if [ -f evals/baselines/latest.json ]; then
+            uv run python evals/run_eval.py --retrieval-only --compare evals/baselines/latest.json
+          else
+            uv run python evals/run_eval.py --retrieval-only
+          fi
+
+      - name: Classification eval (clean corpus)
+        run: uv run python evals/run_eval.py --layers classification --classification-clean-only
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: evals/report.md

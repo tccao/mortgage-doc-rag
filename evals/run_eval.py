@@ -404,6 +404,8 @@ def main() -> int:
                     help="override llm backend: llama_cpp | openai_compat | mock")
     ap.add_argument("--compare", default=None)
     ap.add_argument("--save-baseline", action="store_true")
+    ap.add_argument("--classification-clean-only", action="store_true",
+                    help="skip OCR-heavy degraded classification (CI)")
     args = ap.parse_args()
 
     layers = {x.strip() for x in args.layers.split(",")}
@@ -435,7 +437,9 @@ def main() -> int:
 
     if "classification" in layers:
         print("== Classification layer ==")
-        results["classification"] = eval_classification_layer()
+        results["classification"] = eval_classification_layer(
+            include_degraded=not args.classification_clean_only
+        )
         for v in ("clean", "degraded"):
             c = results["classification"][v]
             if c["scored"]:
