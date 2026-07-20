@@ -33,8 +33,9 @@ ADR-style log. Each entry: context → options → choice → what I'd do differ
 ## ADR-5: Local GGUF models over hosted APIs
 
 **Context.** Mortgage documents are privacy-sensitive; the pipeline should run without sending documents anywhere.
-**Choice.** llama.cpp GGUF models by default (Mistral-7B for v1), with an `LLMBackend` protocol so any OpenAI-compatible endpoint is one config field away. Cost ceiling is hardware you already have; reproducibility is pinned to a model file hash rather than a moving API.
-**Trade-off.** Quality ceiling is real: a 7B Q4 model misreads tables a frontier API model would not. The eval harness makes this trade-off *measurable* instead of anecdotal.
+**Choice.** Local GGUF weights over llama.cpp, with an `LLMBackend` protocol so any OpenAI-compatible endpoint is one config field away. Cost ceiling is hardware you already have; reproducibility is pinned to a model file hash rather than a moving API.
+**What runs where.** `config.py` defaults to Mistral-7B-Instruct Q4_K_M so the repo is runnable on a laptop-class GPU without editing anything. The benchmarked run in `evals/report.md` overrides that seam — `backend: openai_compat`, `model: ornith-1.0-35b-Q4_K_M.gguf`, served by `llama_cpp.server` on one A100 40GB. Same code path, one config field apart; that difference is the seam doing its job, not configuration drift.
+**Trade-off.** Quality ceiling is real: a quantized local model misreads tables a frontier API model would not. The eval harness makes this trade-off *measurable* instead of anecdotal — swapping the backend re-runs the same 29 cases and produces a comparable number.
 
 ## ADR-6: Adversarial bundles as first-class eval data
 
@@ -52,7 +53,42 @@ ADR-style log. Each entry: context → options → choice → what I'd do differ
 
 **Context.** Doc-type classification could be done by the LLM.
 **Choice.** Keyword scoring runs first: deterministic, free, measurable against the manifest, and good enough to drive doc separation and metadata filters. The LLM sees type metadata; it doesn't produce it.
+**What the confusion matrix showed.** Accuracy alone hid the shape of the errors. Every mistake in the benchmark run — 3 clean, 4 degraded — predicted the same class, `Mortgage Contract`, which has **precision 0.000**: predicted 3 times, correct never. Its keyword list is 4/6 generic mortgage vocabulary ("loan amount", "principal", "interest rate", "mortgage") that appears on nearly every document, so it scores for free and absorbs pages whose own type phrasing is unusual. This is a class-prior problem, and it is invisible in a 94.6% accuracy number.
+**IDF weighting: tried, measured, not adopted.** Weighting each keyword by corpus inverse document frequency (`compute_keyword_idf`, `--set use_idf_classifier=true`) removes the sink completely — `Mortgage Contract` drops from 3 predictions to 0, and `idf("mortgage")` falls to ~1/11th of `idf("loan")`. But clean accuracy *drops* 94.6% → 92.9%: the errors relocate to Loan Estimate vs Closing Disclosure, which are genuinely similar documents. The sink was masking a harder separation problem rather than causing it. Kept off by default and retained as an ablation arm, because the honest result is "the obvious fix does not pay" — which is exactly what the harness is for.
 **At scale.** Replace with a small supervised classifier (the manifest labels are already a training set); keep the keyword scorer as a deterministic fallback.
+
+## ADR-9: Reference baselines alongside regression baselines
+
+**Context.** The committed baselines answer "did this change break anything?". They cannot answer "does this pipeline beat something simpler?" — every design choice (reranking, doc separation, chunk sizing, dense retrieval itself) was assumed to help rather than measured.
+**Options.** (a) trust the design; (b) ablate components one at a time; (c) compare against independent simpler systems; (d) both.
+**Choice.** (d). `--retriever {dense,bm25,none}` selects a reference system and `--set KEY=VALUE` overrides any `PipelineConfig` field, so an ablation arm is a config change rather than a code branch. Arms write `report-<tag>.md` and `baselines/<tag>.json` and never overwrite the shipped baseline. `scripts/run_ablations.sh` runs the grid.
+**First result (retrieval layer, 29 cases, same chunks for both retrievers).**
+
+| Retriever | hit@k | MRR |
+|---|---|---|
+| Dense (bge-small) | 100.0% | 0.862 |
+| BM25 | 89.7% | 0.784 |
+
+Per case: BM25 is worse on 7, equal on 20, **better on 2**. Dense earns its cost here — but not uniformly. The two cases BM25 wins are `adv-b1-loan-amount` and `adv-b1-rate`, where it ranks the authentic closing disclosure first (RR 1.0) and dense ranks it second (RR 0.5) behind the planted fake "corrected" CD. The forgery is semantically near-identical to the real document, so cosine similarity cannot separate them, while lexical scoring can. That is a concrete argument for hybrid retrieval on adversarial inputs, and it is a finding the regression baseline could never have produced.
+**At scale.** Hybrid dense+sparse fusion, with the ablation grid as the gate on whether it actually helps.
+
+## ADR-10: The reranker is measured, and it is not earning its place
+
+**Context.** `use_reranker` defaulted to true from the start and was never scored. The retrieval layer called `retrieve()` without a reranker while the answer path passed one, so published hit@k/MRR described the bi-encoder alone. An unmeasured component is indistinguishable from one that does nothing.
+**Method.** Score the same candidate list twice — dense truncated to `rerank_top_n`, and cross-encoder-reranked to the same depth — so the delta isolates reordering rather than conflating it with the top_k→top_n cutoff.
+**Result (29 cases, `cross-encoder/ms-marco-MiniLM-L-6-v2`, top_k 5 → top_n 3).**
+
+| Stage | hit | MRR |
+|---|---|---|
+| Dense, truncated to top_n | 100.0% | 0.862 |
+| Cross-encoder reranked, same depth | 89.7% | 0.828 |
+
+Truncation cost is **0 of 29** — every gold document was already at rank 1 or 2, so the cutoff loses nothing. The entire drop is the reranker demoting gold documents out of the top 3: 2 cases improved, 4 worsened, and 3 gold documents were dropped outright (`clean-cd-pi`, `clean-cd-prepay-penalty`, `clean-retrieval-refi`).
+
+**This propagates to the answer layer.** Two of the eight answer failures in the benchmark run — `clean-cd-pi` and `clean-cd-prepay-penalty`, both "expected number absent" — are cases where the reranker removed the gold document before generation. The model never saw the chunk containing the answer. The 100% retrieval figure concealed this precisely because the metric bypassed the reranker.
+**Reading.** A general-domain MS-MARCO cross-encoder is scoring web-passage relevance, not tabular mortgage forms, and it is mis-ordering a candidate list the bi-encoder had already ranked well. When hit@k is saturated, a reranker has no headroom to win and every opportunity to lose.
+**Status.** `use_reranker` now defaults to **false**. The committed `evals/report.md` and `baselines/latest.json` predate the flip and were produced with it enabled — the next `--all --save-baseline` run regenerates both and restores consistency. Expect the answer pass rate to move upward, since `clean-cd-pi` and `clean-cd-prepay-penalty` failed only because reranking hid their gold documents; that is a prediction, not a measurement, because retrieval reaching the model is necessary but not sufficient for those cases to pass. Both arms stay reproducible: `--set use_reranker=true --tag rerank`.
+**Not a claim that reranking is useless.** A cross-encoder trained on this document type, or applied where hit@k is not already saturated, could well pay. The claim is narrower and measured: *this* reranker on *this* corpus costs more than it returns.
 
 ## Known limitations / what I'd do differently
 
@@ -62,3 +98,5 @@ ADR-style log. Each entry: context → options → choice → what I'd do differ
 - Synthetic scan degradation approximates, but does not equal, real scanner/phone captures.
 - Chunk→page attribution is proportional, not exact, so bundle-level retrieval gold labels carry small noise.
 - No human relevance judgments on retrieval; gold doc/page stands in for graded relevance.
+- Retrieval metrics measure the bi-encoder alone. `run_eval.py` calls `retrieve()` without a reranker, while `ClassicalRAG` passes one, so reported hit@k/MRR describe the candidate-generation stage and the answer layer describes the reranked stage. The reranker's contribution is therefore **unmeasured** — the fix is to report MRR both pre- and post-rerank and treat the delta as its measured value.
+- Baselines are *regression* baselines (this system's previous run), not *reference* baselines (a simpler system). Nothing currently answers "does this pipeline beat a naive alternative?" — see the ablation grid in the roadmap.

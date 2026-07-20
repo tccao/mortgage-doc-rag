@@ -1,0 +1,412 @@
+{
+  "meta": {
+    "timestamp": "2026-07-19 23:21:27",
+    "mode": "classical",
+    "backend": "none",
+    "model": "none",
+    "layers": [
+      "retrieval"
+    ],
+    "retriever": "dense",
+    "tag": "rerank",
+    "overrides": {
+      "use_reranker": true
+    },
+    "corpus": {
+      "clean_pdfs": 64,
+      "degraded_pdfs": 64,
+      "bundles": 3,
+      "doc_types": 13
+    },
+    "hardware": {
+      "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+      "python": "3.14.6",
+      "cuda": "cpu",
+      "commit": "15c0336"
+    },
+    "layer_seconds": {
+      "rag": 92.4
+    }
+  },
+  "rag": {
+    "per_case": [
+      {
+        "id": "adv-b1-loan-amount",
+        "category": "adversarial",
+        "variant": "clean",
+        "doc_id": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 0.5,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 0.5
+      },
+      {
+        "id": "adv-b1-rate",
+        "category": "adversarial",
+        "variant": "clean",
+        "doc_id": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 0.5,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 0.5
+      },
+      {
+        "id": "adv-b2-loan-amount",
+        "category": "adversarial",
+        "variant": "clean",
+        "doc_id": "closing_disclosure/cd_sample_refinance_h25e.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "adv-b2-income",
+        "category": "adversarial",
+        "variant": "clean",
+        "doc_id": "pay_slip/paystub_okafor.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "adv-b3-income",
+        "category": "adversarial",
+        "variant": "clean",
+        "doc_id": "pay_slip/paystub_lindqvist.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-cd-loan-amount",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-cd-rate",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-cd-pi",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": false,
+        "rr_reranked": 0.0
+      },
+      {
+        "id": "clean-le-lender",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "le_sample_fixed_rate_h24b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-cd-borrowers",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-le-sale-price",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "le_sample_fixed_rate_h24b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-refi-loan-amount",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_refinance_h25e.pdf",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 0.5,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 0.5
+      },
+      {
+        "id": "clean-refi-rate",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_refinance_h25e.pdf",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 0.5,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-refi-apr",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_refinance_h25e.pdf",
+        "retrieval_hit": true,
+        "rr": 0.333,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 0.333,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-paystub-rivera-gross",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "paystub_rivera.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-paystub-rivera-net",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "paystub_rivera.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-paystub-okafor-id",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "paystub_okafor.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-paystub-okafor-ytd",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "paystub_okafor.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-paystub-lindqvist-employer",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "paystub_lindqvist.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "clean-cd-prepay-penalty",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 0.333,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 0.333,
+        "retrieval_hit_reranked": false,
+        "rr_reranked": 0.0
+      },
+      {
+        "id": "clean-retrieval-refi",
+        "category": "retrieval",
+        "variant": "clean",
+        "doc_id": "cd_sample_refinance_h25e.pdf",
+        "retrieval_hit": true,
+        "rr": 0.333,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 0.333,
+        "retrieval_hit_reranked": false,
+        "rr_reranked": 0.0
+      },
+      {
+        "id": "clean-retrieval-urla",
+        "category": "retrieval",
+        "variant": "clean",
+        "doc_id": "va_26_1802a_urla_addendum.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 0.5
+      },
+      {
+        "id": "clean-retrieval-hud1",
+        "category": "retrieval",
+        "variant": "clean",
+        "doc_id": "hud1_settlement_statement.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "degraded-cd-loan-amount",
+        "category": "extraction",
+        "variant": "degraded",
+        "doc_id": "cd_sample_fixed_rate_h25b_scan.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "degraded-cd-rate",
+        "category": "extraction",
+        "variant": "degraded",
+        "doc_id": "cd_sample_fixed_rate_h25b_scan.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "degraded-refi-loan-amount",
+        "category": "extraction",
+        "variant": "degraded",
+        "doc_id": "cd_sample_refinance_h25e_scan.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "degraded-paystub-rivera-gross",
+        "category": "extraction",
+        "variant": "degraded",
+        "doc_id": "paystub_rivera_scan.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "degraded-paystub-okafor-id",
+        "category": "extraction",
+        "variant": "degraded",
+        "doc_id": "paystub_okafor_scan.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      },
+      {
+        "id": "degraded-paystub-lindqvist-employer",
+        "category": "extraction",
+        "variant": "degraded",
+        "doc_id": "paystub_lindqvist_scan.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "retrieval_hit_at_n": true,
+        "rr_at_n": 1.0,
+        "retrieval_hit_reranked": true,
+        "rr_reranked": 1.0
+      }
+    ],
+    "retriever": "dense",
+    "retrieval": {
+      "cases": 29,
+      "hit_at_k": 1.0,
+      "mrr": 0.862,
+      "hit_at_k_ci": [
+        0.883,
+        1.0
+      ],
+      "mrr_ci": {
+        "mean": 0.862,
+        "ci_low": 0.7221,
+        "ci_high": 1.0,
+        "n_items": 29,
+        "n_clusters": 17,
+        "iters": 2000
+      },
+      "reranked": {
+        "cases": 29,
+        "hit_at_n_dense": 1.0,
+        "mrr_at_n_dense": 0.862,
+        "hit_at_k": 0.8966,
+        "mrr": 0.8276,
+        "mrr_delta": -0.0344,
+        "improved": 2,
+        "worsened": 4,
+        "truncation_losses": 0
+      }
+    }
+  }
+}

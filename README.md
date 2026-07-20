@@ -55,8 +55,10 @@ regex validation (amounts, SSN exposure, cross-document consistency) → vector 
 ```text
 evals/
   golden_set.jsonl   # 29 typed cases: extraction / retrieval / adversarial, clean + degraded
-  scoring.py         # numeric-with-tolerance, exact, contains, fuzzy + distractor detection
-  run_eval.py        # layered runner with regression compare vs committed baseline
+  scoring.py         # typed answer scoring + distractor detection; confusion matrix,
+                     #   Wilson intervals, cluster bootstrap
+  retrievers.py      # reference baselines: BM25 (self-contained) and no-retrieval
+  run_eval.py        # layered runner, regression compare, ablation arms
   baselines/         # committed results; CI fails on PASS->FAIL flips
 ```
 
@@ -80,6 +82,45 @@ uv run python evals/run_eval.py --layers ocr,classification
 uv run python evals/run_eval.py --all --save-baseline   # full run (needs LLM)
 uv run python evals/run_eval.py --retrieval-only --compare evals/baselines/latest.json
 ```
+
+### Reference baselines and ablations
+
+The committed baselines are *regression* baselines — they answer "did this change break
+anything?". They cannot answer "does the complexity earn its place?". `--retriever` swaps
+in a simpler system and `--set` overrides any config field, so an ablation arm is a config
+change rather than a code branch. Arms write `report-<tag>.md` and `baselines/<tag>.json`
+and never overwrite the shipped baseline.
+
+```bash
+uv run python evals/run_eval.py --layers retrieval --retriever bm25 --tag bm25
+uv run python evals/run_eval.py --layers retrieval --set use_reranker=false --tag no-rerank
+uv run python evals/run_eval.py --all --retriever none --tag no-retrieval   # needs LLM
+./scripts/run_ablations.sh retrieval                                        # whole grid
+```
+
+Retrieval layer, 29 cases, identical chunks for both retrievers:
+
+| Retriever | hit@k | MRR | vs dense |
+| --- | --- | --- | --- |
+| Dense (bge-small) | 100.0% | 0.862 | — |
+| BM25 | 89.7% | 0.784 | worse on 7 cases, equal on 20, **better on 2** |
+
+Dense retrieval earns its cost — but not uniformly. Both cases BM25 wins are adversarial:
+it ranks the authentic closing disclosure first while dense ranks it *behind* the planted
+fake "corrected" one. The forgery is semantically near-identical, so cosine similarity
+cannot separate the two; lexical scoring can. See [ADR-9](docs/design.md).
+
+The reranker, scored at equal depth for the first time, is **not** earning its place:
+
+| Stage | hit | MRR |
+| --- | --- | --- |
+| Dense, truncated to `top_n` | 100.0% | 0.862 |
+| Cross-encoder reranked, same depth | 89.7% | 0.828 |
+
+Truncation costs 0 of 29 cases, so the whole drop is the cross-encoder demoting gold
+documents. It propagates: two of the eight answer failures in the benchmark run are cases
+where reranking removed the gold document before generation, which the bi-encoder-only
+retrieval metric had concealed. [ADR-10](docs/design.md).
 
 ## Data corpus
 
@@ -120,8 +161,15 @@ for tests). `mode: classical | agentic` selects the orchestrator behind a single
   tool loop (retrieval / validation / consistency checks), grounding self-check, multi-hop
   cross-document questions. The eval harness will publish a classical-vs-agentic comparison
   table — accuracy, adversarial resistance, latency, tokens — from the same golden set.
+- **Hybrid dense+sparse retrieval**, gated on the ablation grid — BM25 already beats
+  dense on the adversarial cases where a forged document is semantically identical
+  to the authentic one (see above).
+- **No-retrieval baseline on the answer layer**, to separate retrieval from the
+  model's parametric recall of these public forms. Wired (`--retriever none`) but
+  not yet run against an LLM.
 - OCR-layer red-team growth: distractor synthesis, real phone-capture samples.
-- Bootstrap confidence intervals over the golden set.
+- Bootstrap confidence intervals over the golden set — clustered by document, since
+  cases sharing a source document are not independent.
 
 ## Docs
 

@@ -8,6 +8,7 @@ filter by type and evals can score against gold pages.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 
 import fitz
@@ -87,12 +88,52 @@ BOUNDARY_MARKERS = [
 ]
 
 
-def classify_page_content(text: str) -> tuple[str, float]:
-    """Keyword-scored doc-type classification. Returns (doc_type, confidence 0-1)."""
+def compute_keyword_idf(texts: list[str]) -> dict[str, float]:
+    """Inverse document frequency for every classifier keyword, over a corpus.
+
+    Raw keyword counting assumes every keyword carries equal evidence. It does
+    not: terms like "mortgage", "principal", and "interest rate" appear on nearly
+    every document in a loan file, so any doc type listing them scores for free
+    and becomes a sink that absorbs unrelated pages. Weighting by
+
+        idf(term) = log(N / df(term))
+
+    drives a term present in every document to ~0 and leaves the discriminative
+    phrases carrying the decision. Same principle as BM25's idf factor.
+    """
+    n = len(texts)
+    if not n:
+        return {}
+    lowered = [t.lower() for t in texts]
+    keywords = {kw for kws in DOC_TYPE_PATTERNS.values() for kw in kws}
+    idf = {}
+    for kw in keywords:
+        df = sum(1 for t in lowered if kw in t)
+        idf[kw] = math.log(n / df) if df else math.log(n)
+    return idf
+
+
+def classify_page_content(
+    text: str, idf: dict[str, float] | None = None
+) -> tuple[str, float]:
+    """Keyword-scored doc-type classification. Returns (doc_type, confidence 0-1).
+
+    With ``idf`` supplied, keyword hits are weighted by corpus inverse document
+    frequency instead of counted equally. Off by default: the committed baseline
+    was measured with plain counting, and switching the default would change the
+    reported number without a re-run to back it.
+    """
     text_lower = text.lower()
     scores = {}
     for doc_type, keywords in DOC_TYPE_PATTERNS.items():
-        score = sum(1 for kw in keywords if kw in text_lower)
+        if idf:
+            score = sum(idf.get(kw, 0.0) for kw in keywords if kw in text_lower)
+            # Normalize by the type's own maximum so a doc type listing many rare
+            # keywords cannot outscore one listing few, purely on list length.
+            ceiling = sum(idf.get(kw, 0.0) for kw in keywords) or 1.0
+            score = score / ceiling * len(keywords)
+        else:
+            score = sum(1 for kw in keywords if kw in text_lower)
         if score > 0:
             scores[doc_type] = score
 

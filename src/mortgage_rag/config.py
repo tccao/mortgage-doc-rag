@@ -39,9 +39,18 @@ class PipelineConfig:
     # Embeddings / retrieval
     embed_model: str = "BAAI/bge-small-en-v1.5"
     rerank_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
-    use_reranker: bool = True
+    # Off by default as of ADR-10: scored at equal depth, the cross-encoder
+    # demoted gold documents (MRR 0.862 -> 0.828, 3 golds dropped) and caused two
+    # answer failures. Re-enable per-arm with --set use_reranker=true.
+    use_reranker: bool = False
     top_k: int = 5
     rerank_top_n: int = 3
+
+    # Classification
+    # IDF-weighted keyword scoring instead of equal-weight counting. Off by
+    # default so the committed baseline stays comparable; flip it as an ablation
+    # arm (--set use_idf_classifier=true) to measure what the weighting buys.
+    use_idf_classifier: bool = False
 
     # Chunking
     chunk_size: int = 500

@@ -360,13 +360,439 @@
       "scored": 56,
       "correct": 53,
       "unmapped": 8,
-      "accuracy": 0.9464
+      "accuracy": 0.9464,
+      "confusion": {
+        "labels": [
+          "Appraisal",
+          "Closing Disclosure",
+          "Loan Application",
+          "Loan Estimate",
+          "Mortgage Contract",
+          "Pay Slip",
+          "Resume",
+          "Settlement Statement",
+          "Tax Document"
+        ],
+        "matrix": {
+          "Appraisal": {
+            "Appraisal": 3,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Closing Disclosure": {
+            "Appraisal": 0,
+            "Closing Disclosure": 18,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Loan Application": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 1,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 1,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Loan Estimate": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 15,
+            "Mortgage Contract": 2,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Mortgage Contract": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Pay Slip": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 3,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Resume": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 1,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Settlement Statement": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 2,
+            "Tax Document": 0
+          },
+          "Tax Document": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 10
+          }
+        },
+        "per_class": {
+          "Appraisal": {
+            "support": 3,
+            "predicted": 3,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Closing Disclosure": {
+            "support": 18,
+            "predicted": 18,
+            "tp": 18,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Loan Application": {
+            "support": 2,
+            "predicted": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6667
+          },
+          "Loan Estimate": {
+            "support": 17,
+            "predicted": 15,
+            "tp": 15,
+            "fp": 0,
+            "fn": 2,
+            "precision": 1.0,
+            "recall": 0.8824,
+            "f1": 0.9375
+          },
+          "Mortgage Contract": {
+            "support": 0,
+            "predicted": 3,
+            "tp": 0,
+            "fp": 3,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          },
+          "Pay Slip": {
+            "support": 3,
+            "predicted": 3,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Resume": {
+            "support": 1,
+            "predicted": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Settlement Statement": {
+            "support": 2,
+            "predicted": 2,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Tax Document": {
+            "support": 10,
+            "predicted": 10,
+            "tp": 10,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          }
+        },
+        "accuracy": 0.9464,
+        "macro_f1": 0.9505,
+        "n": 56
+      },
+      "accuracy_ci": [
+        0.8539,
+        0.9816
+      ]
     },
     "degraded": {
       "scored": 56,
       "correct": 52,
       "unmapped": 8,
-      "accuracy": 0.9286
+      "accuracy": 0.9286,
+      "confusion": {
+        "labels": [
+          "Appraisal",
+          "Closing Disclosure",
+          "Loan Application",
+          "Loan Estimate",
+          "Mortgage Contract",
+          "Pay Slip",
+          "Resume",
+          "Settlement Statement",
+          "Tax Document"
+        ],
+        "matrix": {
+          "Appraisal": {
+            "Appraisal": 3,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Closing Disclosure": {
+            "Appraisal": 0,
+            "Closing Disclosure": 18,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Loan Application": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 1,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 1,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Loan Estimate": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 15,
+            "Mortgage Contract": 2,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Mortgage Contract": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Pay Slip": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 3,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Resume": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 1,
+            "Settlement Statement": 0,
+            "Tax Document": 0
+          },
+          "Settlement Statement": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 0,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 2,
+            "Tax Document": 0
+          },
+          "Tax Document": {
+            "Appraisal": 0,
+            "Closing Disclosure": 0,
+            "Loan Application": 0,
+            "Loan Estimate": 0,
+            "Mortgage Contract": 1,
+            "Pay Slip": 0,
+            "Resume": 0,
+            "Settlement Statement": 0,
+            "Tax Document": 9
+          }
+        },
+        "per_class": {
+          "Appraisal": {
+            "support": 3,
+            "predicted": 3,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Closing Disclosure": {
+            "support": 18,
+            "predicted": 18,
+            "tp": 18,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Loan Application": {
+            "support": 2,
+            "predicted": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6667
+          },
+          "Loan Estimate": {
+            "support": 17,
+            "predicted": 15,
+            "tp": 15,
+            "fp": 0,
+            "fn": 2,
+            "precision": 1.0,
+            "recall": 0.8824,
+            "f1": 0.9375
+          },
+          "Mortgage Contract": {
+            "support": 0,
+            "predicted": 4,
+            "tp": 0,
+            "fp": 4,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0
+          },
+          "Pay Slip": {
+            "support": 3,
+            "predicted": 3,
+            "tp": 3,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Resume": {
+            "support": 1,
+            "predicted": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Settlement Statement": {
+            "support": 2,
+            "predicted": 2,
+            "tp": 2,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "Tax Document": {
+            "support": 10,
+            "predicted": 9,
+            "tp": 9,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1.0,
+            "recall": 0.9,
+            "f1": 0.9474
+          }
+        },
+        "accuracy": 0.9286,
+        "macro_f1": 0.9439,
+        "n": 56
+      },
+      "accuracy_ci": [
+        0.8302,
+        0.9719
+      ]
     },
     "mistakes": [
       {
@@ -425,7 +851,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.14,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the closing disclosure in this loan file?\n   - **Constraint:** Answer briefly using only the conte"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the closing disclosure in this loan file?\n   - **Constraint:** Answer briefly using only the conte",
+        "doc_id": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf"
       },
       {
         "id": "adv-b1-rate",
@@ -437,7 +864,8 @@
         "matched_distractor": true,
         "reason": "answered with distractor value",
         "latency_s": 7.09,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the closing disclosure in this loan file?\n   - **Constraint:** Answer briefly using only the con"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the closing disclosure in this loan file?\n   - **Constraint:** Answer briefly using only the con",
+        "doc_id": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf"
       },
       {
         "id": "adv-b2-loan-amount",
@@ -449,7 +877,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.42,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the verified loan amount on the closing disclosure in this file?\n   - **Constraint:** Answer briefly using only the c"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the verified loan amount on the closing disclosure in this file?\n   - **Constraint:** Answer briefly using only the c",
+        "doc_id": "closing_disclosure/cd_sample_refinance_h25e.pdf"
       },
       {
         "id": "adv-b2-income",
@@ -461,7 +890,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.08,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's gross monthly income according to his pay slip?\n   - **Constraint:** Answer briefly using only the co"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's gross monthly income according to his pay slip?\n   - **Constraint:** Answer briefly using only the co",
+        "doc_id": "pay_slip/paystub_okafor.pdf"
       },
       {
         "id": "adv-b3-income",
@@ -473,7 +903,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.17,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Anna Lindqvist's gross pay according to her pay slip?\n   - **Constraint:** Answer briefly using only the context belo"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Anna Lindqvist's gross pay according to her pay slip?\n   - **Constraint:** Answer briefly using only the context belo",
+        "doc_id": "pay_slip/paystub_lindqvist.pdf"
       },
       {
         "id": "clean-cd-loan-amount",
@@ -485,7 +916,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.08,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context belo"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context belo",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
       },
       {
         "id": "clean-cd-rate",
@@ -497,7 +929,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 6.68,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context be"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context be",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
       },
       {
         "id": "clean-cd-pi",
@@ -509,7 +942,8 @@
         "matched_distractor": false,
         "reason": "expected number absent",
         "latency_s": 7.04,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the monthly principal and interest payment on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly "
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the monthly principal and interest payment on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly ",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
       },
       {
         "id": "clean-le-lender",
@@ -521,7 +955,8 @@
         "matched_distractor": false,
         "reason": "expected string absent",
         "latency_s": 6.65,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which lender issued the fixed-rate loan estimate?\n   - **Context Provided:** Three excerpts from mortgage/loan documents:\n   "
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which lender issued the fixed-rate loan estimate?\n   - **Context Provided:** Three excerpts from mortgage/loan documents:\n   ",
+        "doc_id": "le_sample_fixed_rate_h24b.pdf"
       },
       {
         "id": "clean-cd-borrowers",
@@ -533,7 +968,8 @@
         "matched_distractor": false,
         "reason": "similarity 0.02",
         "latency_s": 7.41,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Who are the borrowers on the fixed-rate closing disclosure?\n   - **Context Provided:** Three excerpts from mortgage-related d"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Who are the borrowers on the fixed-rate closing disclosure?\n   - **Context Provided:** Three excerpts from mortgage-related d",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
       },
       {
         "id": "clean-le-sale-price",
@@ -545,7 +981,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 6.51,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the sale price of the property on the fixed-rate loan estimate?\n   - **Constraint:** Answer briefly using only the co"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the sale price of the property on the fixed-rate loan estimate?\n   - **Constraint:** Answer briefly using only the co",
+        "doc_id": "le_sample_fixed_rate_h24b.pdf"
       },
       {
         "id": "clean-refi-loan-amount",
@@ -557,7 +994,8 @@
         "matched_distractor": false,
         "reason": "expected number absent",
         "latency_s": 7.0,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context below"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context below",
+        "doc_id": "cd_sample_refinance_h25e.pdf"
       },
       {
         "id": "clean-refi-rate",
@@ -569,7 +1007,8 @@
         "matched_distractor": false,
         "reason": "expected number absent",
         "latency_s": 6.48,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context bel"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context bel",
+        "doc_id": "cd_sample_refinance_h25e.pdf"
       },
       {
         "id": "clean-refi-apr",
@@ -581,7 +1020,8 @@
         "matched_distractor": false,
         "reason": "expected number absent",
         "latency_s": 6.55,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the annual percentage rate (APR) on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only "
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the annual percentage rate (APR) on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only ",
+        "doc_id": "cd_sample_refinance_h25e.pdf"
       },
       {
         "id": "clean-paystub-rivera-gross",
@@ -593,7 +1033,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 3.42,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's gross pay for the pay period?\n   - **Constraint:** Answer briefly using only the context below. If the"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's gross pay for the pay period?\n   - **Constraint:** Answer briefly using only the context below. If the",
+        "doc_id": "paystub_rivera.pdf"
       },
       {
         "id": "clean-paystub-rivera-net",
@@ -605,7 +1046,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.0,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's net pay?\n   - **Constraint:** Answer briefly using only the context below. If the context does not con"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's net pay?\n   - **Constraint:** Answer briefly using only the context below. If the context does not con",
+        "doc_id": "paystub_rivera.pdf"
       },
       {
         "id": "clean-paystub-okafor-id",
@@ -617,7 +1059,8 @@
         "matched_distractor": false,
         "reason": "expected string present",
         "latency_s": 7.3,
-        "response": "Thinking process:\n1.  **Analyze Request:**\n   - Question: What is Daniel Okafor's employee ID?\n   - Constraint: Answer briefly using only the context below. If not in context, say so.\n\n2.  **Scan Cont"
+        "response": "Thinking process:\n1.  **Analyze Request:**\n   - Question: What is Daniel Okafor's employee ID?\n   - Constraint: Answer briefly using only the context below. If not in context, say so.\n\n2.  **Scan Cont",
+        "doc_id": "paystub_okafor.pdf"
       },
       {
         "id": "clean-paystub-okafor-ytd",
@@ -629,7 +1072,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 6.58,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What are Daniel Okafor's year-to-date gross earnings?\n   - **Constraint:** Answer briefly using only the context below. If co"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What are Daniel Okafor's year-to-date gross earnings?\n   - **Constraint:** Answer briefly using only the context below. If co",
+        "doc_id": "paystub_okafor.pdf"
       },
       {
         "id": "clean-paystub-lindqvist-employer",
@@ -641,7 +1085,8 @@
         "matched_distractor": false,
         "reason": "expected string present",
         "latency_s": 6.16,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which employer issued Anna Lindqvist's pay slip?\n   - **Constraint:** Answer briefly using only the context below. If the con"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which employer issued Anna Lindqvist's pay slip?\n   - **Constraint:** Answer briefly using only the context below. If the con",
+        "doc_id": "paystub_lindqvist.pdf"
       },
       {
         "id": "clean-cd-prepay-penalty",
@@ -653,28 +1098,32 @@
         "matched_distractor": false,
         "reason": "expected number absent",
         "latency_s": 7.19,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the maximum prepayment penalty on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only t"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the maximum prepayment penalty on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only t",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
       },
       {
         "id": "clean-retrieval-refi",
         "category": "retrieval",
         "variant": "clean",
         "retrieval_hit": true,
-        "rr": 0.333
+        "rr": 0.333,
+        "doc_id": "cd_sample_refinance_h25e.pdf"
       },
       {
         "id": "clean-retrieval-urla",
         "category": "retrieval",
         "variant": "clean",
         "retrieval_hit": true,
-        "rr": 1.0
+        "rr": 1.0,
+        "doc_id": "va_26_1802a_urla_addendum.pdf"
       },
       {
         "id": "clean-retrieval-hud1",
         "category": "retrieval",
         "variant": "clean",
         "retrieval_hit": true,
-        "rr": 1.0
+        "rr": 1.0,
+        "doc_id": "hud1_settlement_statement.pdf"
       },
       {
         "id": "degraded-cd-loan-amount",
@@ -686,7 +1135,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.51,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context belo"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context belo",
+        "doc_id": "cd_sample_fixed_rate_h25b_scan.pdf"
       },
       {
         "id": "degraded-cd-rate",
@@ -698,7 +1148,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.48,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context be"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context be",
+        "doc_id": "cd_sample_fixed_rate_h25b_scan.pdf"
       },
       {
         "id": "degraded-refi-loan-amount",
@@ -710,7 +1161,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.65,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context below"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context below",
+        "doc_id": "cd_sample_refinance_h25e_scan.pdf"
       },
       {
         "id": "degraded-paystub-rivera-gross",
@@ -722,7 +1174,8 @@
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 3.4,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's gross pay for the pay period?\n   - **Constraint:** Answer briefly using only the context below. If the"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's gross pay for the pay period?\n   - **Constraint:** Answer briefly using only the context below. If the",
+        "doc_id": "paystub_rivera_scan.pdf"
       },
       {
         "id": "degraded-paystub-okafor-id",
@@ -734,7 +1187,8 @@
         "matched_distractor": false,
         "reason": "expected string present",
         "latency_s": 3.24,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's employee ID?\n   - **Constraint:** Answer briefly using only the context below. If the context does no"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's employee ID?\n   - **Constraint:** Answer briefly using only the context below. If the context does no",
+        "doc_id": "paystub_okafor_scan.pdf"
       },
       {
         "id": "degraded-paystub-lindqvist-employer",
@@ -746,13 +1200,26 @@
         "matched_distractor": false,
         "reason": "expected string present",
         "latency_s": 6.62,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which employer issued Anna Lindqvist's pay slip?\n   - **Constraint:** Answer briefly using only the context below. If the con"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which employer issued Anna Lindqvist's pay slip?\n   - **Constraint:** Answer briefly using only the context below. If the con",
+        "doc_id": "paystub_lindqvist_scan.pdf"
       }
     ],
     "retrieval": {
       "cases": 29,
       "hit_at_k": 1.0,
-      "mrr": 0.862
+      "mrr": 0.862,
+      "hit_at_k_ci": [
+        0.883,
+        1.0
+      ],
+      "mrr_ci": {
+        "mean": 0.862,
+        "ci_low": 0.7221,
+        "ci_high": 1.0,
+        "n_items": 29,
+        "n_clusters": 17,
+        "iters": 2000
+      }
     },
     "answer": {
       "cases": 26,
@@ -761,14 +1228,38 @@
       "by_category": {
         "adversarial": {
           "cases": 5,
-          "pass_rate": 0.8
+          "pass_rate": 0.8,
+          "pass_rate_ci": [
+            0.3755,
+            0.9638
+          ]
         },
         "extraction": {
           "cases": 21,
-          "pass_rate": 0.6667
+          "pass_rate": 0.6667,
+          "pass_rate_ci": [
+            0.4537,
+            0.8281
+          ]
         }
       },
-      "adversarial_resistance": 0.8
+      "adversarial_resistance": 0.8,
+      "pass_rate_ci": [
+        0.5001,
+        0.835
+      ],
+      "pass_rate_bootstrap": {
+        "mean": 0.6923,
+        "ci_low": 0.5,
+        "ci_high": 0.95,
+        "n_items": 26,
+        "n_clusters": 15,
+        "iters": 2000
+      },
+      "adversarial_resistance_ci": [
+        0.3755,
+        0.9638
+      ]
     }
   }
 }

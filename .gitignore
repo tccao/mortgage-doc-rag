@@ -24,3 +24,4 @@ temp_ocr_pages/
 # OS
 .DS_Store
 evals/baselines/checkpoint.json
+evals/baselines/checkpoint-*.json
