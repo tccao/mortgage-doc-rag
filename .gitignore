@@ -1,5 +1,6 @@
 # Private interview/defense notes — never publish
 private/
+.claude/
 
 # Python
 __pycache__/
