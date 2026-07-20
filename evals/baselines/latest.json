@@ -1,0 +1,774 @@
+{
+  "meta": {
+    "timestamp": "2026-07-20 00:20:34",
+    "mode": "classical",
+    "backend": "openai_compat",
+    "model": "ornith-1.0-35b-Q4_K_M.gguf",
+    "layers": [
+      "answer",
+      "classification",
+      "ocr",
+      "retrieval"
+    ],
+    "corpus": {
+      "clean_pdfs": 64,
+      "degraded_pdfs": 64,
+      "bundles": 3,
+      "doc_types": 13
+    },
+    "hardware": {
+      "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+      "python": "3.12.13",
+      "cuda": "NVIDIA A100-SXM4-40GB",
+      "commit": "fde7c36"
+    },
+    "layer_seconds": {
+      "ocr": 1469.5,
+      "classification": 0.0,
+      "rag": 254.9
+    }
+  },
+  "ocr": {
+    "files": 64,
+    "mean_cer": 0.7033,
+    "mean_wer": 0.9308,
+    "per_file": [
+      {
+        "file": "appraisal/urar_form_1004_blank_scan.pdf",
+        "cer": 0.46299107142857143,
+        "wer": 0.570407211687908
+      },
+      {
+        "file": "appraisal/urar_form_1004_epa_scan.pdf",
+        "cer": 0.3158200290275762,
+        "wer": 0.47774917248988596
+      },
+      {
+        "file": "appraisal/va_sample_appraisal_report_scan.pdf",
+        "cer": 0.6670441093211179,
+        "wer": 0.7802944507361268
+      },
+      {
+        "file": "circular/va_circular_26_21_09_scan.pdf",
+        "cer": 0.04168734491315137,
+        "wer": 0.14285714285714285
+      },
+      {
+        "file": "closing_disclosure/cd_annotated_rule_citations_scan.pdf",
+        "cer": 6.389473684210526,
+        "wer": 6.7011494252873565
+      },
+      {
+        "file": "closing_disclosure/cd_annotated_tila_citations_scan.pdf",
+        "cer": 1.0961538461538463,
+        "wer": 1.3403361344537814
+      },
+      {
+        "file": "closing_disclosure/cd_blank_h25a_scan.pdf",
+        "cer": 0.6140004388852315,
+        "wer": 0.873217115689382
+      },
+      {
+        "file": "closing_disclosure/cd_blank_no_seller_h25hj_scan.pdf",
+        "cer": 0.4844886088221037,
+        "wer": 0.7429519071310116
+      },
+      {
+        "file": "closing_disclosure/cd_blank_no_seller_spanish_h28j_scan.pdf",
+        "cer": 0.5201562777481797,
+        "wer": 0.7567567567567568
+      },
+      {
+        "file": "closing_disclosure/cd_blank_pace_scan.pdf",
+        "cer": 0.5046480743691899,
+        "wer": 0.6860119047619048
+      },
+      {
+        "file": "closing_disclosure/cd_blank_pace_spanish_scan.pdf",
+        "cer": 0.4152671755725191,
+        "wer": 0.664071190211346
+      },
+      {
+        "file": "closing_disclosure/cd_blank_spanish_h28f_scan.pdf",
+        "cer": 0.5265194260841528,
+        "wer": 0.7644444444444445
+      },
+      {
+        "file": "closing_disclosure/cd_page2_cost_modifications_h25h_scan.pdf",
+        "cer": 0.4507531865585168,
+        "wer": 0.6212765957446809
+      },
+      {
+        "file": "closing_disclosure/cd_page3_poc_h25d1_scan.pdf",
+        "cer": 0.2401685393258427,
+        "wer": 0.4431137724550898
+      },
+      {
+        "file": "closing_disclosure/cd_page3_second_lien_h25c_scan.pdf",
+        "cer": 0.2631338510735496,
+        "wer": 0.4473684210526316
+      },
+      {
+        "file": "closing_disclosure/cd_sample_fixed_rate_h25b_scan.pdf",
+        "cer": 0.5979285619439649,
+        "wer": 0.7948207171314741
+      },
+      {
+        "file": "closing_disclosure/cd_sample_fixed_spanish_h28g_scan.pdf",
+        "cer": 0.4227098189797038,
+        "wer": 0.6690419635787807
+      },
+      {
+        "file": "closing_disclosure/cd_sample_refi_additional_funds_h25g_scan.pdf",
+        "cer": 0.49806351665375675,
+        "wer": 0.773121387283237
+      },
+      {
+        "file": "closing_disclosure/cd_sample_refi_excess_cost_h25f1_scan.pdf",
+        "cer": 0.5260960334029228,
+        "wer": 0.6926829268292682
+      },
+      {
+        "file": "closing_disclosure/cd_sample_refinance_h25e_scan.pdf",
+        "cer": 0.5147058823529411,
+        "wer": 0.8114285714285714
+      },
+      {
+        "file": "closing_disclosure/cd_sample_refinance_spanish_h28h_scan.pdf",
+        "cer": 0.4672808132147395,
+        "wer": 0.7221597300337458
+      },
+      {
+        "file": "closing_disclosure/cd_seller_illustration_h25hi_scan.pdf",
+        "cer": 0.25417151726814124,
+        "wer": 0.6213333333333333
+      },
+      {
+        "file": "escrow_notice/escrow_cancellation_h29_scan.pdf",
+        "cer": 0.6780227120908484,
+        "wer": 0.744
+      },
+      {
+        "file": "ftc_sample/ftc_sample_disclosure_forms_scan.pdf",
+        "cer": 2.7466346153846155,
+        "wer": 3.0854430379746836
+      },
+      {
+        "file": "loan_application/usda_rd410_4_loan_application_scan.pdf",
+        "cer": 0.42201757350456237,
+        "wer": 0.753731343283582
+      },
+      {
+        "file": "loan_application/va_26_1802a_urla_addendum_scan.pdf",
+        "cer": 0.5365518736674737,
+        "wer": 0.6885367665263679
+      },
+      {
+        "file": "loan_estimate/le_annotated_rule_citations_scan.pdf",
+        "cer": 8.34608695652174,
+        "wer": 8.74712643678161
+      },
+      {
+        "file": "loan_estimate/le_annotated_tila_citations_scan.pdf",
+        "cer": 1.4928119608970674,
+        "wer": 1.7003891050583657
+      },
+      {
+        "file": "loan_estimate/le_blank_h24_scan.pdf",
+        "cer": 0.5368972746331236,
+        "wer": 0.698389458272328
+      },
+      {
+        "file": "loan_estimate/le_blank_no_seller_h24g_scan.pdf",
+        "cer": 0.5304150085275725,
+        "wer": 0.7163029525032092
+      },
+      {
+        "file": "loan_estimate/le_blank_no_seller_spanish_h28i_scan.pdf",
+        "cer": 0.387409200968523,
+        "wer": 0.6263473053892216
+      },
+      {
+        "file": "loan_estimate/le_blank_pace_scan.pdf",
+        "cer": 0.5108695652173914,
+        "wer": 0.68359375
+      },
+      {
+        "file": "loan_estimate/le_blank_pace_spanish_scan.pdf",
+        "cer": 0.35765124555160144,
+        "wer": 0.5421686746987951
+      },
+      {
+        "file": "loan_estimate/le_blank_spanish_h28a_scan.pdf",
+        "cer": 0.3403316866619619,
+        "wer": 0.5404157043879908
+      },
+      {
+        "file": "loan_estimate/le_sample_arm_interest_only_h24c_scan.pdf",
+        "cer": 0.4268753372908797,
+        "wer": 0.5958029197080292
+      },
+      {
+        "file": "loan_estimate/le_sample_arm_spanish_h28b_scan.pdf",
+        "cer": 0.4950564150284983,
+        "wer": 0.6804597701149425
+      },
+      {
+        "file": "loan_estimate/le_sample_balloon_h24e_scan.pdf",
+        "cer": 0.6619488296135003,
+        "wer": 0.8866396761133604
+      },
+      {
+        "file": "loan_estimate/le_sample_balloon_spanish_h28d_scan.pdf",
+        "cer": 0.3523070288917637,
+        "wer": 0.6568047337278107
+      },
+      {
+        "file": "loan_estimate/le_sample_fixed_rate_h24b_scan.pdf",
+        "cer": 0.34288935416331134,
+        "wer": 0.5153172866520788
+      },
+      {
+        "file": "loan_estimate/le_sample_neg_am_h24f_scan.pdf",
+        "cer": 0.6930379746835443,
+        "wer": 0.9358974358974359
+      },
+      {
+        "file": "loan_estimate/le_sample_neg_am_spanish_h28e_scan.pdf",
+        "cer": 0.4101068999028183,
+        "wer": 0.6166134185303515
+      },
+      {
+        "file": "loan_estimate/le_sample_refinance_h24d_scan.pdf",
+        "cer": 0.48158102766798416,
+        "wer": 0.6241900647948164
+      },
+      {
+        "file": "loan_estimate/le_sample_refinance_spanish_h28c_scan.pdf",
+        "cer": 0.2679913386829703,
+        "wer": 0.45808636748518206
+      },
+      {
+        "file": "pay_slip/paystub_lindqvist_scan.pdf",
+        "cer": 0.03218390804597701,
+        "wer": 0.7222222222222222
+      },
+      {
+        "file": "pay_slip/paystub_okafor_scan.pdf",
+        "cer": 0.031818181818181815,
+        "wer": 0.7027027027027027
+      },
+      {
+        "file": "pay_slip/paystub_rivera_scan.pdf",
+        "cer": 0.03225806451612903,
+        "wer": 0.7027027027027027
+      },
+      {
+        "file": "resume/resume_alvarez_scan.pdf",
+        "cer": 0.014705882352941176,
+        "wer": 0.26785714285714285
+      },
+      {
+        "file": "service_providers/service_providers_blank_h27a_scan.pdf",
+        "cer": 0.367948717948718,
+        "wer": 0.3813559322033898
+      },
+      {
+        "file": "service_providers/service_providers_nonshop_h27c_scan.pdf",
+        "cer": 0.486870897155361,
+        "wer": 0.515625
+      },
+      {
+        "file": "service_providers/service_providers_sample_h27b_scan.pdf",
+        "cer": 0.7085843373493976,
+        "wer": 0.974025974025974
+      },
+      {
+        "file": "settlement_statement/hud1_explainer_sample_scan.pdf",
+        "cer": 0.7802965191233348,
+        "wer": 0.9141599413059428
+      },
+      {
+        "file": "settlement_statement/hud1_settlement_statement_scan.pdf",
+        "cer": 0.625523295070898,
+        "wer": 0.9531548757170172
+      },
+      {
+        "file": "tax_form/irs_1040_scan.pdf",
+        "cer": 0.484147302087436,
+        "wer": 0.7454819277108434
+      },
+      {
+        "file": "tax_form/irs_1040_schedule_b_scan.pdf",
+        "cer": 0.5751759436980166,
+        "wer": 0.8794178794178794
+      },
+      {
+        "file": "tax_form/irs_1040_schedule_e_scan.pdf",
+        "cer": 0.2910854258004517,
+        "wer": 0.45622119815668205
+      },
+      {
+        "file": "tax_form/irs_1098_mortgage_interest_scan.pdf",
+        "cer": 0.3652769135034225,
+        "wer": 0.5052840158520475
+      },
+      {
+        "file": "tax_form/irs_1099_int_scan.pdf",
+        "cer": 0.4790521327014218,
+        "wer": 0.6199722607489597
+      },
+      {
+        "file": "tax_form/irs_1099_misc_scan.pdf",
+        "cer": 0.361482613679786,
+        "wer": 0.5061188811188811
+      },
+      {
+        "file": "tax_form/irs_4506c_transcript_request_scan.pdf",
+        "cer": 0.13477791192730507,
+        "wer": 0.33887987012987014
+      },
+      {
+        "file": "tax_form/irs_4506t_transcript_request_scan.pdf",
+        "cer": 0.08333333333333333,
+        "wer": 0.23871689668034315
+      },
+      {
+        "file": "tax_form/irs_w2_scan.pdf",
+        "cer": 0.4518992568125516,
+        "wer": 0.6212574850299402
+      },
+      {
+        "file": "tax_form/irs_w9_scan.pdf",
+        "cer": 0.17747440273037543,
+        "wer": 0.32520148115878894
+      },
+      {
+        "file": "va_form/va_26_6393_loan_analysis_scan.pdf",
+        "cer": 0.631738954195379,
+        "wer": 0.8668596237337193
+      },
+      {
+        "file": "va_form/va_26_8923_irrrl_worksheet_scan.pdf",
+        "cer": 0.6054258241758241,
+        "wer": 0.7380410022779044
+      }
+    ]
+  },
+  "classification": {
+    "clean": {
+      "scored": 56,
+      "correct": 53,
+      "unmapped": 8,
+      "accuracy": 0.9464
+    },
+    "degraded": {
+      "scored": 56,
+      "correct": 52,
+      "unmapped": 8,
+      "accuracy": 0.9286
+    },
+    "mistakes": [
+      {
+        "file": "va_26_1802a_urla_addendum.pdf",
+        "variant": "clean",
+        "expected": "Loan Application",
+        "predicted": "Mortgage Contract"
+      },
+      {
+        "file": "le_sample_balloon_h24e.pdf",
+        "variant": "clean",
+        "expected": "Loan Estimate",
+        "predicted": "Mortgage Contract"
+      },
+      {
+        "file": "le_sample_neg_am_h24f.pdf",
+        "variant": "clean",
+        "expected": "Loan Estimate",
+        "predicted": "Mortgage Contract"
+      },
+      {
+        "file": "va_26_1802a_urla_addendum_scan.pdf",
+        "variant": "degraded",
+        "expected": "Loan Application",
+        "predicted": "Mortgage Contract"
+      },
+      {
+        "file": "le_sample_balloon_h24e_scan.pdf",
+        "variant": "degraded",
+        "expected": "Loan Estimate",
+        "predicted": "Mortgage Contract"
+      },
+      {
+        "file": "le_sample_neg_am_h24f_scan.pdf",
+        "variant": "degraded",
+        "expected": "Loan Estimate",
+        "predicted": "Mortgage Contract"
+      },
+      {
+        "file": "irs_1098_mortgage_interest_scan.pdf",
+        "variant": "degraded",
+        "expected": "Tax Document",
+        "predicted": "Mortgage Contract"
+      }
+    ]
+  },
+  "rag": {
+    "per_case": [
+      {
+        "id": "adv-b1-loan-amount",
+        "category": "adversarial",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.14,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the closing disclosure in this loan file?\n   - **Constraint:** Answer briefly using only the conte"
+      },
+      {
+        "id": "adv-b1-rate",
+        "category": "adversarial",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "answer_pass": false,
+        "matched_distractor": true,
+        "reason": "answered with distractor value",
+        "latency_s": 7.09,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the closing disclosure in this loan file?\n   - **Constraint:** Answer briefly using only the con"
+      },
+      {
+        "id": "adv-b2-loan-amount",
+        "category": "adversarial",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.42,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the verified loan amount on the closing disclosure in this file?\n   - **Constraint:** Answer briefly using only the c"
+      },
+      {
+        "id": "adv-b2-income",
+        "category": "adversarial",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.08,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's gross monthly income according to his pay slip?\n   - **Constraint:** Answer briefly using only the co"
+      },
+      {
+        "id": "adv-b3-income",
+        "category": "adversarial",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.17,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Anna Lindqvist's gross pay according to her pay slip?\n   - **Constraint:** Answer briefly using only the context belo"
+      },
+      {
+        "id": "clean-cd-loan-amount",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.08,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context belo"
+      },
+      {
+        "id": "clean-cd-rate",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 6.68,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context be"
+      },
+      {
+        "id": "clean-cd-pi",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 7.04,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the monthly principal and interest payment on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly "
+      },
+      {
+        "id": "clean-le-lender",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected string absent",
+        "latency_s": 6.65,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which lender issued the fixed-rate loan estimate?\n   - **Context Provided:** Three excerpts from mortgage/loan documents:\n   "
+      },
+      {
+        "id": "clean-cd-borrowers",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "similarity 0.02",
+        "latency_s": 7.41,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Who are the borrowers on the fixed-rate closing disclosure?\n   - **Context Provided:** Three excerpts from mortgage-related d"
+      },
+      {
+        "id": "clean-le-sale-price",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 6.51,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the sale price of the property on the fixed-rate loan estimate?\n   - **Constraint:** Answer briefly using only the co"
+      },
+      {
+        "id": "clean-refi-loan-amount",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 7.0,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context below"
+      },
+      {
+        "id": "clean-refi-rate",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 6.48,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context bel"
+      },
+      {
+        "id": "clean-refi-apr",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 0.333,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 6.55,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the annual percentage rate (APR) on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only "
+      },
+      {
+        "id": "clean-paystub-rivera-gross",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 3.42,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's gross pay for the pay period?\n   - **Constraint:** Answer briefly using only the context below. If the"
+      },
+      {
+        "id": "clean-paystub-rivera-net",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.0,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's net pay?\n   - **Constraint:** Answer briefly using only the context below. If the context does not con"
+      },
+      {
+        "id": "clean-paystub-okafor-id",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected string present",
+        "latency_s": 7.3,
+        "response": "Thinking process:\n1.  **Analyze Request:**\n   - Question: What is Daniel Okafor's employee ID?\n   - Constraint: Answer briefly using only the context below. If not in context, say so.\n\n2.  **Scan Cont"
+      },
+      {
+        "id": "clean-paystub-okafor-ytd",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 6.58,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What are Daniel Okafor's year-to-date gross earnings?\n   - **Constraint:** Answer briefly using only the context below. If co"
+      },
+      {
+        "id": "clean-paystub-lindqvist-employer",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected string present",
+        "latency_s": 6.16,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which employer issued Anna Lindqvist's pay slip?\n   - **Constraint:** Answer briefly using only the context below. If the con"
+      },
+      {
+        "id": "clean-cd-prepay-penalty",
+        "category": "extraction",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 0.333,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 7.19,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the maximum prepayment penalty on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only t"
+      },
+      {
+        "id": "clean-retrieval-refi",
+        "category": "retrieval",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 0.333
+      },
+      {
+        "id": "clean-retrieval-urla",
+        "category": "retrieval",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0
+      },
+      {
+        "id": "clean-retrieval-hud1",
+        "category": "retrieval",
+        "variant": "clean",
+        "retrieval_hit": true,
+        "rr": 1.0
+      },
+      {
+        "id": "degraded-cd-loan-amount",
+        "category": "extraction",
+        "variant": "degraded",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.51,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context belo"
+      },
+      {
+        "id": "degraded-cd-rate",
+        "category": "extraction",
+        "variant": "degraded",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.48,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context be"
+      },
+      {
+        "id": "degraded-refi-loan-amount",
+        "category": "extraction",
+        "variant": "degraded",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.65,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context below"
+      },
+      {
+        "id": "degraded-paystub-rivera-gross",
+        "category": "extraction",
+        "variant": "degraded",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 3.4,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's gross pay for the pay period?\n   - **Constraint:** Answer briefly using only the context below. If the"
+      },
+      {
+        "id": "degraded-paystub-okafor-id",
+        "category": "extraction",
+        "variant": "degraded",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected string present",
+        "latency_s": 3.24,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's employee ID?\n   - **Constraint:** Answer briefly using only the context below. If the context does no"
+      },
+      {
+        "id": "degraded-paystub-lindqvist-employer",
+        "category": "extraction",
+        "variant": "degraded",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected string present",
+        "latency_s": 6.62,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which employer issued Anna Lindqvist's pay slip?\n   - **Constraint:** Answer briefly using only the context below. If the con"
+      }
+    ],
+    "retrieval": {
+      "cases": 29,
+      "hit_at_k": 1.0,
+      "mrr": 0.862
+    },
+    "answer": {
+      "cases": 26,
+      "pass_rate": 0.6923,
+      "mean_latency_s": 6.57,
+      "by_category": {
+        "adversarial": {
+          "cases": 5,
+          "pass_rate": 0.8
+        },
+        "extraction": {
+          "cases": 21,
+          "pass_rate": 0.6667
+        }
+      },
+      "adversarial_resistance": 0.8
+    }
+  }
+}

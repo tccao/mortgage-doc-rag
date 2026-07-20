@@ -10,8 +10,21 @@ benchmarks every stage of the pipeline against frozen ground truth, including ad
 ## Results
 
 <!-- RESULTS:BEGIN -->
-_Populated by `evals/run_eval.py --all --save-baseline`; see `evals/report.md` for the
-latest committed run._
+Full-corpus run — Ornith-1.0-35B (Q4_K_M) via llama.cpp server on an A100 40GB
+([evals/report.md](evals/report.md) for per-case detail):
+
+| Layer | Metric | Value |
+| --- | --- | --- |
+| OCR (degraded scans) | mean CER / WER over 64 files | 0.703 / 0.931 |
+| Doc classification | accuracy, clean / degraded | 94.6% / 92.9% |
+| Retrieval | hit@k / MRR over 29 cases | 100% / 0.862 |
+| Answer | pass rate over 26 cases | 69.2% |
+| Adversarial resistance | distractor rejected | 80.0% |
+| Latency | mean per answered case | 6.6s |
+
+One adversarial case answered with the injected "corrected" closing-disclosure value —
+exactly the failure mode the distractor scoring exists to expose; a fuzzy-similarity
+metric alone would have scored it a near-pass.
 <!-- RESULTS:END -->
 
 Every number is regenerable: deterministic scoring against frozen references, temperature-0
@@ -39,7 +52,7 @@ regex validation (amounts, SSN exposure, cross-document consistency) → vector 
 
 ## The eval harness (the point of this repo)
 
-```
+```text
 evals/
   golden_set.jsonl   # 29 typed cases: extraction / retrieval / adversarial, clean + degraded
   scoring.py         # numeric-with-tolerance, exact, contains, fuzzy + distractor detection
@@ -50,7 +63,7 @@ evals/
 Four independent layers:
 
 | Layer | Reference | LLM needed |
-|---|---|---|
+| --- | --- | --- |
 | OCR | frozen text of clean originals vs OCR of degraded scans (CER/WER) | no |
 | Classification | `data/manifest.csv` doc types over the full corpus | no |
 | Retrieval | gold document per question (hit@k, MRR) | no |
