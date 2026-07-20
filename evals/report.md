@@ -1,8 +1,8 @@
 # Evaluation report
 
-- Run: 2026-07-20 00:20:34 | mode: classical | backend: openai_compat | model: ornith-1.0-35b-Q4_K_M.gguf | device: NVIDIA A100-SXM4-40GB | commit: fde7c36
+- Run: 2026-07-20 15:30:15 | mode: classical | backend: openai_compat | model: ornith-1.0-35b-Q4_K_M.gguf | device: NVIDIA A100-SXM4-40GB | commit: 08c9044
 - Corpus: 64 clean + 64 degraded PDFs, 3 adversarial bundles, 13 doc types
-- Layer runtime: ocr 1469.5s, classification 0.0s, rag 254.9s
+- Layer runtime: ocr 1469.9s, classification 0.0s, rag 220.1s
 
 | Layer | Metric | Value |
 |---|---|---|
@@ -12,13 +12,14 @@
 | Doc classification (degraded) | accuracy | 92.9% (52/56) [95% CI 0.830–0.972] |
 | Doc classification (degraded) | macro F1 | 0.9439 |
 | Retrieval | hit@k / MRR over 29 cases | 100.0% / 0.862 [95% CI 0.883–1.000] |
-| Answer | pass rate over 26 cases | 69.2% [95% CI 0.500–0.835] |
+| Answer | pass rate over 26 cases | 65.4% [95% CI 0.462–0.806] |
 | Answer (adversarial) | pass rate | 80.0% (5 cases) [95% CI 0.376–0.964] |
-| Answer (extraction) | pass rate | 66.7% (21 cases) [95% CI 0.454–0.828] |
+| Answer (extraction) | pass rate | 61.9% (21 cases) [95% CI 0.409–0.792] |
 | Adversarial resistance | distractor rejected | 80.0% [95% CI 0.376–0.964] |
-| Latency | mean per answered case | 6.57s |
+| Citation faithfulness | gold page cited (21 scoreable) | 95.2% [95% CI 0.773–0.992] |
+| Latency | mean per answered case | 6.75s |
 
-Cluster bootstrap over source documents (15 clusters, 26 cases, 2000 resamples): answer pass rate 0.692, 95% CI [0.500, 0.950]. Cases sharing a document fail together, so documents are resampled rather than cases — resampling cases would treat correlated failures as independent evidence.
+Cluster bootstrap over source documents (15 clusters, 26 cases, 2000 resamples): answer pass rate 0.654, 95% CI [0.438, 0.950]. Cases sharing a document fail together, so documents are resampled rather than cases — resampling cases would treat correlated failures as independent evidence.
 
 ### Confusion matrix — clean (rows = expected, columns = predicted)
 
@@ -89,7 +90,7 @@ Accuracy 92.9% over 56 files; macro F1 0.9439. Macro F1 weights every class equa
 | adv-b2-loan-amount | adversarial | clean | hit | PASS | expected number found |
 | adv-b2-income | adversarial | clean | hit | PASS | expected number found |
 | adv-b3-income | adversarial | clean | hit | PASS | expected number found |
-| clean-cd-loan-amount | extraction | clean | hit | PASS | expected number found |
+| clean-cd-loan-amount | extraction | clean | hit | FAIL | expected number absent |
 | clean-cd-rate | extraction | clean | hit | PASS | expected number found |
 | clean-cd-pi | extraction | clean | hit | FAIL | expected number absent |
 | clean-le-lender | extraction | clean | hit | FAIL | expected string absent |

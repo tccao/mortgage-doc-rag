@@ -10,21 +10,28 @@ benchmarks every stage of the pipeline against frozen ground truth, including ad
 ## Results
 
 <!-- RESULTS:BEGIN -->
-Full-corpus run — Ornith-1.0-35B (Q4_K_M) via llama.cpp server on an A100 40GB
-([evals/report.md](evals/report.md) for per-case detail):
+Full-corpus run, Ornith-1.0-35B (Q4_K_M) via llama.cpp server on an A100 40GB, reranker off
+per [ADR-10](docs/design.md) ([evals/report.md](evals/report.md) for per-case detail):
 
 | Layer | Metric | Value |
 | --- | --- | --- |
 | OCR (degraded scans) | mean CER / WER over 64 files | 0.703 / 0.931 |
 | Doc classification | accuracy, clean / degraded | 94.6% / 92.9% |
 | Retrieval | hit@k / MRR over 29 cases | 100% / 0.862 |
-| Answer | pass rate over 26 cases | 69.2% |
+| Answer | pass rate over 26 cases | 65.4% |
 | Adversarial resistance | distractor rejected | 80.0% |
-| Latency | mean per answered case | 6.6s |
+| Citation faithfulness | gold page cited, 21 scoreable cases | 95.2% |
+| Latency | mean per answered case | 6.8s |
 
-One adversarial case answered with the injected "corrected" closing-disclosure value —
-exactly the failure mode the distractor scoring exists to expose; a fuzzy-similarity
+One adversarial case answered with the injected "corrected" closing-disclosure value,
+exactly the failure mode the distractor scoring exists to expose. A fuzzy-similarity
 metric alone would have scored it a near-pass.
+
+Answer pass rate moved 69.2% to 65.4% when I turned the reranker off, the opposite of what
+I predicted in ADR-10. I keep the prediction and the refutation in the log rather than
+quietly restating the number: see [ADR-10](docs/design.md) for the two reasons, a depth
+confound I introduced and a generation token budget that is doing more damage than
+retrieval ever was.
 <!-- RESULTS:END -->
 
 Every number is regenerable: deterministic scoring against frozen references, temperature-0
@@ -118,9 +125,11 @@ The reranker, scored at equal depth for the first time, is **not** earning its p
 | Cross-encoder reranked, same depth | 89.7% | 0.828 |
 
 Truncation costs 0 of 29 cases, so the whole drop is the cross-encoder demoting gold
-documents. It propagates: two of the eight answer failures in the benchmark run are cases
-where reranking removed the gold document before generation, which the bi-encoder-only
-retrieval metric had concealed. [ADR-10](docs/design.md).
+documents. I then predicted that turning it off would lift the answer pass rate, because two
+failures looked like cases where reranking hid the gold document before generation. I ran it
+and the pass rate fell instead, 69.2% to 65.4%, with both predicted recoveries still failing.
+The prediction and its refutation both stay in [ADR-10](docs/design.md), because the reason it
+failed is the more useful finding.
 
 ## Data corpus
 

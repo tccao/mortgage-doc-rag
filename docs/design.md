@@ -85,10 +85,33 @@ Per case: BM25 is worse on 7, equal on 20, **better on 2**. Dense earns its cost
 
 Truncation cost is **0 of 29** — every gold document was already at rank 1 or 2, so the cutoff loses nothing. The entire drop is the reranker demoting gold documents out of the top 3: 2 cases improved, 4 worsened, and 3 gold documents were dropped outright (`clean-cd-pi`, `clean-cd-prepay-penalty`, `clean-retrieval-refi`).
 
-**This propagates to the answer layer.** Two of the eight answer failures in the benchmark run — `clean-cd-pi` and `clean-cd-prepay-penalty`, both "expected number absent" — are cases where the reranker removed the gold document before generation. The model never saw the chunk containing the answer. The 100% retrieval figure concealed this precisely because the metric bypassed the reranker.
 **Reading.** A general-domain MS-MARCO cross-encoder is scoring web-passage relevance, not tabular mortgage forms, and it is mis-ordering a candidate list the bi-encoder had already ranked well. When hit@k is saturated, a reranker has no headroom to win and every opportunity to lose.
-**Status.** `use_reranker` now defaults to **false**. The committed `evals/report.md` and `baselines/latest.json` predate the flip and were produced with it enabled — the next `--all --save-baseline` run regenerates both and restores consistency. Expect the answer pass rate to move upward, since `clean-cd-pi` and `clean-cd-prepay-penalty` failed only because reranking hid their gold documents; that is a prediction, not a measurement, because retrieval reaching the model is necessary but not sufficient for those cases to pass. Both arms stay reproducible: `--set use_reranker=true --tag rerank`.
+**Status.** `use_reranker` defaults to **false**, on the retrieval evidence above. Both arms stay reproducible: `--set use_reranker=true --tag rerank`.
 **Not a claim that reranking is useless.** A cross-encoder trained on this document type, or applied where hit@k is not already saturated, could well pay. The claim is narrower and measured: *this* reranker on *this* corpus costs more than it returns.
+
+### ADR-10a: I predicted the answer layer would improve, and it got worse
+
+**The prediction I wrote down.** Two of the eight answer failures under the reranker, `clean-cd-pi` and `clean-cd-prepay-penalty`, were cases where the cross-encoder dropped the gold document before generation. I predicted that turning the reranker off would let those recover and lift the answer pass rate. I flagged it as a prediction rather than a measurement, and then I measured it.
+
+**Result (2026-07-20 15:30, commit `08c9044`, same model, same hardware).**
+
+| Metric | Reranker on | Reranker off | Δ |
+|---|---|---|---|
+| Answer pass, 26 cases | 69.2% | 65.4% | −3.8 pt |
+| Extraction pass, 21 cases | 66.7% | 61.9% | −4.8 pt |
+| Adversarial resistance | 80.0% | 80.0% | flat |
+| Retrieval hit@k / MRR | 100% / 0.862 | 100% / 0.862 | flat |
+| RAG layer runtime | 254.9s | 220.1s | −13% |
+
+Exactly one case flipped, and it flipped against the prediction: `clean-cd-loan-amount` went PASS to FAIL. `clean-cd-pi` and `clean-cd-prepay-penalty` still fail with the gold document present, so the reranker was never their cause. The prediction is refuted, and it stays in this log for that reason.
+
+**Why it failed, reason 1: I confounded the arms.** With the reranker on, generation receives `rerank_top_n=3` chunks; with it off, it receives `top_k=5`. Flipping one flag changed both ordering and context depth, so the answer-layer comparison is not the equal-depth comparison the retrieval layer ran. The retrieval arms were controlled and the answer arms were not, in the same experiment. The clean rerun holds depth fixed with `--set rerank_top_n=5`, and until that runs the −3.8 pt is not attributable to the reranker at all.
+
+**Why it failed, reason 2: generation is truncating, and that is the real bottleneck.** `clean-cd-loan-amount` retrieved at rank 1 (`rr: 1.0`) and cited the correct page (`citation_hit: true`), then scored "expected number absent". The reasoning model spends its `max_new_tokens=512` budget on visible chain of thought and gets cut off before it states the short answer, which the notebook demo shows happening mid-sentence on both demo questions. Handing it 5 chunks instead of 3 gives it more to reason about, so more answers are guillotined before the number appears. A meaningful part of my answer pass rate is measuring the token budget, not extraction ability.
+
+**What I retract and what stands.** Retracted: the answer-side prediction, and the framing that reranking was the cause of those two failures. Stands: the retrieval-side measurement, and therefore the default. Replaced: my old line "retrieval is 100%, so retrieval is not the bottleneck" had already been retired in favour of "my reranker was undoing retrieval"; the current line is narrower still, that retrieval reaches the model and generation truncates before using it.
+
+**Next runs, in order.** Raise `max_new_tokens` and rerun the answer layer alone, which isolates truncation. Then rerun the reranker arm at fixed depth. Then the no-retrieval arm, which is wired and unrun. All three are config overrides on the existing harness.
 
 ## Known limitations / what I'd do differently
 
@@ -98,5 +121,7 @@ Truncation cost is **0 of 29** — every gold document was already at rank 1 or 
 - Synthetic scan degradation approximates, but does not equal, real scanner/phone captures.
 - Chunk→page attribution is proportional, not exact, so bundle-level retrieval gold labels carry small noise.
 - No human relevance judgments on retrieval; gold doc/page stands in for graded relevance.
-- Retrieval metrics measure the bi-encoder alone. `run_eval.py` calls `retrieve()` without a reranker, while `ClassicalRAG` passes one, so reported hit@k/MRR describe the candidate-generation stage and the answer layer describes the reranked stage. The reranker's contribution is therefore **unmeasured** — the fix is to report MRR both pre- and post-rerank and treat the delta as its measured value.
+- Answer-layer arms are not depth-controlled. `use_reranker` changes the number of chunks reaching generation (`top_k=5` off, `rerank_top_n=3` on), so any answer-layer A/B on that flag varies two things at once. Retrieval arms are controlled; answer arms are not, until I rerun with `--set rerank_top_n=5`. See ADR-10a.
+- `max_new_tokens=512` is not enough for a chain-of-thought model. Answers truncate before the final value, which the scorer reads as "expected number absent" even when retrieval and citation are correct. Part of the answer pass rate is currently a token-budget measurement, and I have not yet separated the two.
+- Single-run numbers per arm; no repeated-seed variance, so a 1-case flip (3.8 pt at n=26) is inside noise and should not be read as a trend.
 - Baselines are *regression* baselines (this system's previous run), not *reference* baselines (a simpler system). Nothing currently answers "does this pipeline beat a naive alternative?" — see the ablation grid in the roadmap.

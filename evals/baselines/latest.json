@@ -1,6 +1,6 @@
 {
   "meta": {
-    "timestamp": "2026-07-20 00:20:34",
+    "timestamp": "2026-07-20 15:30:15",
     "mode": "classical",
     "backend": "openai_compat",
     "model": "ornith-1.0-35b-Q4_K_M.gguf",
@@ -10,6 +10,9 @@
       "ocr",
       "retrieval"
     ],
+    "retriever": "dense",
+    "tag": null,
+    "overrides": {},
     "corpus": {
       "clean_pdfs": 64,
       "degraded_pdfs": 64,
@@ -20,12 +23,12 @@
       "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
       "python": "3.12.13",
       "cuda": "NVIDIA A100-SXM4-40GB",
-      "commit": "fde7c36"
+      "commit": "08c9044"
     },
     "layer_seconds": {
-      "ocr": 1469.5,
+      "ocr": 1469.9,
       "classification": 0.0,
-      "rag": 254.9
+      "rag": 220.1
     }
   },
   "ocr": {
@@ -845,329 +848,353 @@
         "id": "adv-b1-loan-amount",
         "category": "adversarial",
         "variant": "clean",
+        "doc_id": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
         "retrieval_hit": true,
         "rr": 0.5,
         "answer_pass": true,
         "matched_distractor": false,
         "reason": "expected number found",
-        "latency_s": 7.14,
+        "latency_s": 7.91,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the closing disclosure in this loan file?\n   - **Constraint:** Answer briefly using only the conte",
-        "doc_id": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf"
+        "citation_hit": null
       },
       {
         "id": "adv-b1-rate",
         "category": "adversarial",
         "variant": "clean",
+        "doc_id": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf",
         "retrieval_hit": true,
         "rr": 0.5,
         "answer_pass": false,
         "matched_distractor": true,
         "reason": "answered with distractor value",
-        "latency_s": 7.09,
+        "latency_s": 7.84,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the closing disclosure in this loan file?\n   - **Constraint:** Answer briefly using only the con",
-        "doc_id": "closing_disclosure/cd_sample_fixed_rate_h25b.pdf"
+        "citation_hit": null
       },
       {
         "id": "adv-b2-loan-amount",
         "category": "adversarial",
         "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": true,
-        "matched_distractor": false,
-        "reason": "expected number found",
-        "latency_s": 7.42,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the verified loan amount on the closing disclosure in this file?\n   - **Constraint:** Answer briefly using only the c",
-        "doc_id": "closing_disclosure/cd_sample_refinance_h25e.pdf"
-      },
-      {
-        "id": "adv-b2-income",
-        "category": "adversarial",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": true,
-        "matched_distractor": false,
-        "reason": "expected number found",
-        "latency_s": 7.08,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's gross monthly income according to his pay slip?\n   - **Constraint:** Answer briefly using only the co",
-        "doc_id": "pay_slip/paystub_okafor.pdf"
-      },
-      {
-        "id": "adv-b3-income",
-        "category": "adversarial",
-        "variant": "clean",
+        "doc_id": "closing_disclosure/cd_sample_refinance_h25e.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 7.17,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Anna Lindqvist's gross pay according to her pay slip?\n   - **Constraint:** Answer briefly using only the context belo",
-        "doc_id": "pay_slip/paystub_lindqvist.pdf"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the verified loan amount on the closing disclosure in this file?\n   - **Constraint:** Answer briefly using only the c",
+        "citation_hit": null
       },
       {
-        "id": "clean-cd-loan-amount",
-        "category": "extraction",
+        "id": "adv-b2-income",
+        "category": "adversarial",
         "variant": "clean",
+        "doc_id": "pay_slip/paystub_okafor.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
         "matched_distractor": false,
         "reason": "expected number found",
-        "latency_s": 7.08,
+        "latency_s": 7.17,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's gross monthly income according to his pay slip?\n   - **Constraint:** Answer briefly using only the co",
+        "citation_hit": null
+      },
+      {
+        "id": "adv-b3-income",
+        "category": "adversarial",
+        "variant": "clean",
+        "doc_id": "pay_slip/paystub_lindqvist.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.13,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Anna Lindqvist's gross pay according to her pay slip?\n   - **Constraint:** Answer briefly using only the context belo",
+        "citation_hit": null
+      },
+      {
+        "id": "clean-cd-loan-amount",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 7.01,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context belo",
-        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
+        "citation_hit": true
       },
       {
         "id": "clean-cd-rate",
         "category": "extraction",
         "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 6.98,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context be",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-cd-pi",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 6.94,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the monthly principal and interest payment on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly ",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-le-lender",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "le_sample_fixed_rate_h24b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected string absent",
+        "latency_s": 6.76,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which lender issued the fixed-rate loan estimate?\n   - **Context:** Three excerpts from a \"Mortgage Contract\" document, each ",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-cd-borrowers",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "similarity 0.02",
+        "latency_s": 7.42,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** \"Who are the borrowers on the fixed-rate closing disclosure?\"\n   - **Context Provided:** Three excerpts from mortgage-related",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-le-sale-price",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "le_sample_fixed_rate_h24b.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.42,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the sale price of the property on the fixed-rate loan estimate?\n   - **Constraint:** Answer briefly using only the co",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-refi-loan-amount",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_refinance_h25e.pdf",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 6.75,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context below",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-refi-rate",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_refinance_h25e.pdf",
+        "retrieval_hit": true,
+        "rr": 0.5,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 6.74,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context bel",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-refi-apr",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "cd_sample_refinance_h25e.pdf",
+        "retrieval_hit": true,
+        "rr": 0.333,
+        "answer_pass": false,
+        "matched_distractor": false,
+        "reason": "expected number absent",
+        "latency_s": 6.82,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the annual percentage rate (APR) on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only ",
+        "citation_hit": false
+      },
+      {
+        "id": "clean-paystub-rivera-gross",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "paystub_rivera.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.0,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's gross pay for the pay period?\n   - **Constraint:** Answer briefly using only the context below. If the",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-paystub-rivera-net",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "paystub_rivera.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected number found",
+        "latency_s": 7.06,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's net pay?\n   - **Constraint:** Answer briefly using only the context below. If the context does not con",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-paystub-okafor-id",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "paystub_okafor.pdf",
+        "retrieval_hit": true,
+        "rr": 1.0,
+        "answer_pass": true,
+        "matched_distractor": false,
+        "reason": "expected string present",
+        "latency_s": 6.01,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's employee ID?\n   - **Constraint:** Answer briefly using only the context below. If the context does no",
+        "citation_hit": true
+      },
+      {
+        "id": "clean-paystub-okafor-ytd",
+        "category": "extraction",
+        "variant": "clean",
+        "doc_id": "paystub_okafor.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
         "matched_distractor": false,
         "reason": "expected number found",
         "latency_s": 6.68,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context be",
-        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What are Daniel Okafor's year-to-date gross earnings?\n   - **Constraint:** Answer briefly using only the context below. If th",
+        "citation_hit": true
       },
       {
-        "id": "clean-cd-pi",
+        "id": "clean-paystub-lindqvist-employer",
         "category": "extraction",
         "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": false,
-        "matched_distractor": false,
-        "reason": "expected number absent",
-        "latency_s": 7.04,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the monthly principal and interest payment on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly ",
-        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
-      },
-      {
-        "id": "clean-le-lender",
-        "category": "extraction",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": false,
-        "matched_distractor": false,
-        "reason": "expected string absent",
-        "latency_s": 6.65,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which lender issued the fixed-rate loan estimate?\n   - **Context Provided:** Three excerpts from mortgage/loan documents:\n   ",
-        "doc_id": "le_sample_fixed_rate_h24b.pdf"
-      },
-      {
-        "id": "clean-cd-borrowers",
-        "category": "extraction",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": false,
-        "matched_distractor": false,
-        "reason": "similarity 0.02",
-        "latency_s": 7.41,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Who are the borrowers on the fixed-rate closing disclosure?\n   - **Context Provided:** Three excerpts from mortgage-related d",
-        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
-      },
-      {
-        "id": "clean-le-sale-price",
-        "category": "extraction",
-        "variant": "clean",
+        "doc_id": "paystub_lindqvist.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
         "matched_distractor": false,
-        "reason": "expected number found",
-        "latency_s": 6.51,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the sale price of the property on the fixed-rate loan estimate?\n   - **Constraint:** Answer briefly using only the co",
-        "doc_id": "le_sample_fixed_rate_h24b.pdf"
+        "reason": "expected string present",
+        "latency_s": 6.68,
+        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which employer issued Anna Lindqvist's pay slip?\n   - **Constraint:** Answer briefly using only the context below. If the con",
+        "citation_hit": true
       },
       {
-        "id": "clean-refi-loan-amount",
+        "id": "clean-cd-prepay-penalty",
         "category": "extraction",
         "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 0.5,
-        "answer_pass": false,
-        "matched_distractor": false,
-        "reason": "expected number absent",
-        "latency_s": 7.0,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context below",
-        "doc_id": "cd_sample_refinance_h25e.pdf"
-      },
-      {
-        "id": "clean-refi-rate",
-        "category": "extraction",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 0.5,
-        "answer_pass": false,
-        "matched_distractor": false,
-        "reason": "expected number absent",
-        "latency_s": 6.48,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context bel",
-        "doc_id": "cd_sample_refinance_h25e.pdf"
-      },
-      {
-        "id": "clean-refi-apr",
-        "category": "extraction",
-        "variant": "clean",
+        "doc_id": "cd_sample_fixed_rate_h25b.pdf",
         "retrieval_hit": true,
         "rr": 0.333,
         "answer_pass": false,
         "matched_distractor": false,
         "reason": "expected number absent",
         "latency_s": 6.55,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the annual percentage rate (APR) on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only ",
-        "doc_id": "cd_sample_refinance_h25e.pdf"
-      },
-      {
-        "id": "clean-paystub-rivera-gross",
-        "category": "extraction",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": true,
-        "matched_distractor": false,
-        "reason": "expected number found",
-        "latency_s": 3.42,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's gross pay for the pay period?\n   - **Constraint:** Answer briefly using only the context below. If the",
-        "doc_id": "paystub_rivera.pdf"
-      },
-      {
-        "id": "clean-paystub-rivera-net",
-        "category": "extraction",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": true,
-        "matched_distractor": false,
-        "reason": "expected number found",
-        "latency_s": 7.0,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's net pay?\n   - **Constraint:** Answer briefly using only the context below. If the context does not con",
-        "doc_id": "paystub_rivera.pdf"
-      },
-      {
-        "id": "clean-paystub-okafor-id",
-        "category": "extraction",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": true,
-        "matched_distractor": false,
-        "reason": "expected string present",
-        "latency_s": 7.3,
-        "response": "Thinking process:\n1.  **Analyze Request:**\n   - Question: What is Daniel Okafor's employee ID?\n   - Constraint: Answer briefly using only the context below. If not in context, say so.\n\n2.  **Scan Cont",
-        "doc_id": "paystub_okafor.pdf"
-      },
-      {
-        "id": "clean-paystub-okafor-ytd",
-        "category": "extraction",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": true,
-        "matched_distractor": false,
-        "reason": "expected number found",
-        "latency_s": 6.58,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What are Daniel Okafor's year-to-date gross earnings?\n   - **Constraint:** Answer briefly using only the context below. If co",
-        "doc_id": "paystub_okafor.pdf"
-      },
-      {
-        "id": "clean-paystub-lindqvist-employer",
-        "category": "extraction",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 1.0,
-        "answer_pass": true,
-        "matched_distractor": false,
-        "reason": "expected string present",
-        "latency_s": 6.16,
-        "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which employer issued Anna Lindqvist's pay slip?\n   - **Constraint:** Answer briefly using only the context below. If the con",
-        "doc_id": "paystub_lindqvist.pdf"
-      },
-      {
-        "id": "clean-cd-prepay-penalty",
-        "category": "extraction",
-        "variant": "clean",
-        "retrieval_hit": true,
-        "rr": 0.333,
-        "answer_pass": false,
-        "matched_distractor": false,
-        "reason": "expected number absent",
-        "latency_s": 7.19,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the maximum prepayment penalty on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only t",
-        "doc_id": "cd_sample_fixed_rate_h25b.pdf"
+        "citation_hit": true
       },
       {
         "id": "clean-retrieval-refi",
         "category": "retrieval",
         "variant": "clean",
+        "doc_id": "cd_sample_refinance_h25e.pdf",
         "retrieval_hit": true,
-        "rr": 0.333,
-        "doc_id": "cd_sample_refinance_h25e.pdf"
+        "rr": 0.333
       },
       {
         "id": "clean-retrieval-urla",
         "category": "retrieval",
         "variant": "clean",
+        "doc_id": "va_26_1802a_urla_addendum.pdf",
         "retrieval_hit": true,
-        "rr": 1.0,
-        "doc_id": "va_26_1802a_urla_addendum.pdf"
+        "rr": 1.0
       },
       {
         "id": "clean-retrieval-hud1",
         "category": "retrieval",
         "variant": "clean",
+        "doc_id": "hud1_settlement_statement.pdf",
         "retrieval_hit": true,
-        "rr": 1.0,
-        "doc_id": "hud1_settlement_statement.pdf"
+        "rr": 1.0
       },
       {
         "id": "degraded-cd-loan-amount",
         "category": "extraction",
         "variant": "degraded",
+        "doc_id": "cd_sample_fixed_rate_h25b_scan.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
         "matched_distractor": false,
         "reason": "expected number found",
-        "latency_s": 7.51,
+        "latency_s": 7.6,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context belo",
-        "doc_id": "cd_sample_fixed_rate_h25b_scan.pdf"
+        "citation_hit": true
       },
       {
         "id": "degraded-cd-rate",
         "category": "extraction",
         "variant": "degraded",
+        "doc_id": "cd_sample_fixed_rate_h25b_scan.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
         "matched_distractor": false,
         "reason": "expected number found",
-        "latency_s": 7.48,
+        "latency_s": 7.53,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the interest rate on the fixed-rate closing disclosure?\n   - **Constraint:** Answer briefly using only the context be",
-        "doc_id": "cd_sample_fixed_rate_h25b_scan.pdf"
+        "citation_hit": true
       },
       {
         "id": "degraded-refi-loan-amount",
         "category": "extraction",
         "variant": "degraded",
+        "doc_id": "cd_sample_refinance_h25e_scan.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
         "matched_distractor": false,
         "reason": "expected number found",
-        "latency_s": 7.65,
+        "latency_s": 7.09,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is the loan amount on the refinance closing disclosure?\n   - **Constraint:** Answer briefly using only the context below",
-        "doc_id": "cd_sample_refinance_h25e_scan.pdf"
+        "citation_hit": true
       },
       {
         "id": "degraded-paystub-rivera-gross",
         "category": "extraction",
         "variant": "degraded",
+        "doc_id": "paystub_rivera_scan.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
@@ -1175,12 +1202,13 @@
         "reason": "expected number found",
         "latency_s": 3.4,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Maria Rivera's gross pay for the pay period?\n   - **Constraint:** Answer briefly using only the context below. If the",
-        "doc_id": "paystub_rivera_scan.pdf"
+        "citation_hit": true
       },
       {
         "id": "degraded-paystub-okafor-id",
         "category": "extraction",
         "variant": "degraded",
+        "doc_id": "paystub_okafor_scan.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
@@ -1188,12 +1216,13 @@
         "reason": "expected string present",
         "latency_s": 3.24,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** What is Daniel Okafor's employee ID?\n   - **Constraint:** Answer briefly using only the context below. If the context does no",
-        "doc_id": "paystub_okafor_scan.pdf"
+        "citation_hit": true
       },
       {
         "id": "degraded-paystub-lindqvist-employer",
         "category": "extraction",
         "variant": "degraded",
+        "doc_id": "paystub_lindqvist_scan.pdf",
         "retrieval_hit": true,
         "rr": 1.0,
         "answer_pass": true,
@@ -1201,9 +1230,10 @@
         "reason": "expected string present",
         "latency_s": 6.62,
         "response": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Question:** Which employer issued Anna Lindqvist's pay slip?\n   - **Constraint:** Answer briefly using only the context below. If the con",
-        "doc_id": "paystub_lindqvist_scan.pdf"
+        "citation_hit": true
       }
     ],
+    "retriever": "dense",
     "retrieval": {
       "cases": 29,
       "hit_at_k": 1.0,
@@ -1223,8 +1253,20 @@
     },
     "answer": {
       "cases": 26,
-      "pass_rate": 0.6923,
-      "mean_latency_s": 6.57,
+      "pass_rate": 0.6538,
+      "pass_rate_ci": [
+        0.4622,
+        0.8059
+      ],
+      "pass_rate_bootstrap": {
+        "mean": 0.6538,
+        "ci_low": 0.4375,
+        "ci_high": 0.95,
+        "n_items": 26,
+        "n_clusters": 15,
+        "iters": 2000
+      },
+      "mean_latency_s": 6.75,
       "by_category": {
         "adversarial": {
           "cases": 5,
@@ -1236,30 +1278,27 @@
         },
         "extraction": {
           "cases": 21,
-          "pass_rate": 0.6667,
+          "pass_rate": 0.619,
           "pass_rate_ci": [
-            0.4537,
-            0.8281
+            0.4088,
+            0.7925
           ]
         }
       },
       "adversarial_resistance": 0.8,
-      "pass_rate_ci": [
-        0.5001,
-        0.835
-      ],
-      "pass_rate_bootstrap": {
-        "mean": 0.6923,
-        "ci_low": 0.5,
-        "ci_high": 0.95,
-        "n_items": 26,
-        "n_clusters": 15,
-        "iters": 2000
-      },
       "adversarial_resistance_ci": [
         0.3755,
         0.9638
-      ]
+      ],
+      "citation_faithfulness": {
+        "cases": 21,
+        "rate": 0.9524,
+        "ci": [
+          0.7733,
+          0.9915
+        ],
+        "passed_but_uncited": 0
+      }
     }
   }
 }
