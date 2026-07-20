@@ -317,8 +317,8 @@ def write_report(results: dict) -> None:
     cs = results["meta"]["corpus"]
     lines += [
         f"- Run: {results['meta']['timestamp']} | mode: {results['meta']['mode']} | "
-        f"backend: {results['meta']['backend']} | device: {hw.get('cuda')} | "
-        f"commit: {hw.get('commit', '?')}",
+        f"backend: {results['meta']['backend']} | model: {results['meta'].get('model', '?')} | "
+        f"device: {hw.get('cuda')} | commit: {hw.get('commit', '?')}",
         f"- Corpus: {cs['clean_pdfs']} clean + {cs['degraded_pdfs']} degraded PDFs, "
         f"{cs['bundles']} adversarial bundles, {cs['doc_types']} doc types",
     ]
@@ -409,6 +409,9 @@ def main() -> int:
                     help="override llm backend: llama_cpp | openai_compat | mock")
     ap.add_argument("--compare", default=None)
     ap.add_argument("--save-baseline", action="store_true")
+    ap.add_argument("--resume", action="store_true",
+                    help="reuse layers already completed by a previous (crashed) run's "
+                         "checkpoint instead of recomputing them")
     ap.add_argument("--classification-clean-only", action="store_true",
                     help="skip OCR-heavy degraded classification (CI)")
     args = ap.parse_args()
@@ -428,6 +431,7 @@ def main() -> int:
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
             "mode": cfg.mode,
             "backend": cfg.llm_backend if "answer" in layers else "none",
+            "model": (cfg.llm_model_name or cfg.llm_filename) if "answer" in layers else "none",
             "layers": sorted(layers),
             "corpus": corpus_stats(),
             "hardware": hardware_info(),
@@ -437,21 +441,45 @@ def main() -> int:
     timings: dict[str, float] = {}
     results["meta"]["layer_seconds"] = timings
 
+    # A crashed run leaves its completed layers in the checkpoint; --resume
+    # reuses them so an answer-layer failure never costs the OCR pass again.
+    checkpoint = BASELINES / "checkpoint.json"
+    prior: dict = {}
+    if args.resume and checkpoint.exists():
+        prior = json.loads(checkpoint.read_text())
+
+    def save_checkpoint() -> None:
+        BASELINES.mkdir(exist_ok=True)
+        checkpoint.write_text(json.dumps(results, indent=2))
+
+    def reuse(layer: str) -> bool:
+        if layer not in prior:
+            return False
+        results[layer] = prior[layer]
+        timings[layer] = prior.get("meta", {}).get("layer_seconds", {}).get(layer, 0.0)
+        results["meta"].setdefault("resumed_layers", []).append(layer)
+        print(f"   (reused from checkpoint, originally {timings[layer]}s)")
+        return True
+
     if "ocr" in layers:
         print("== OCR layer (degraded scans vs ground truth) ==")
-        t0 = time.time()
-        results["ocr"] = eval_ocr_layer()
-        timings["ocr"] = round(time.time() - t0, 1)
+        if not reuse("ocr"):
+            t0 = time.time()
+            results["ocr"] = eval_ocr_layer()
+            timings["ocr"] = round(time.time() - t0, 1)
+            save_checkpoint()
         print(f"   mean CER {results['ocr']['mean_cer']} | mean WER {results['ocr']['mean_wer']} "
               f"over {results['ocr']['files']} files [{timings['ocr']}s]")
 
     if "classification" in layers:
         print("== Classification layer ==")
-        t0 = time.time()
-        results["classification"] = eval_classification_layer(
-            include_degraded=not args.classification_clean_only
-        )
-        timings["classification"] = round(time.time() - t0, 1)
+        if not reuse("classification"):
+            t0 = time.time()
+            results["classification"] = eval_classification_layer(
+                include_degraded=not args.classification_clean_only
+            )
+            timings["classification"] = round(time.time() - t0, 1)
+            save_checkpoint()
         for v in ("clean", "degraded"):
             c = results["classification"][v]
             if c["scored"]:
@@ -460,17 +488,21 @@ def main() -> int:
 
     if "retrieval" in layers or "answer" in layers:
         print("== Retrieval" + (" + answer" if "answer" in layers else "") + " layer ==")
-        t0 = time.time()
-        cases = load_golden()
-        backend = None
-        if "answer" in layers and cfg.llm_backend == "mock":
-            from mortgage_rag.backends import MockBackend
+        # A retrieval-only checkpoint cannot satisfy a run that needs answers.
+        rag_reusable = "answer" not in layers or "answer" in prior.get("rag", {})
+        if not (rag_reusable and reuse("rag")):
+            t0 = time.time()
+            cases = load_golden()
+            backend = None
+            if "answer" in layers and cfg.llm_backend == "mock":
+                from mortgage_rag.backends import MockBackend
 
-            backend = MockBackend()
-        results["rag"] = eval_retrieval_and_answer(
-            cases, cfg, run_answers="answer" in layers, backend=backend
-        )
-        timings["rag"] = round(time.time() - t0, 1)
+                backend = MockBackend()
+            results["rag"] = eval_retrieval_and_answer(
+                cases, cfg, run_answers="answer" in layers, backend=backend
+            )
+            timings["rag"] = round(time.time() - t0, 1)
+            save_checkpoint()
         r = results["rag"]["retrieval"]
         print(f"   retrieval: hit@k {r['hit_at_k']:.1%} | MRR {r['mrr']}")
         a = results["rag"].get("answer")
@@ -486,6 +518,7 @@ def main() -> int:
         out = BASELINES / "latest.json"
         out.write_text(json.dumps(results, indent=2))
         print(f"Baseline saved to {out}")
+        checkpoint.unlink(missing_ok=True)
 
     if args.compare:
         return compare_to_baseline(results, Path(args.compare))
